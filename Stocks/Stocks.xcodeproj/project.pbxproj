@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7CB70DE929B7CD5200D7A7F6 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB70DE829B7CD5200D7A7F6 /* CocoaLumberjack.framework */; };
-		7CB70DEB29B7CD5800D7A7F6 /* SVGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB70DEA29B7CD5800D7A7F6 /* SVGKit.framework */; };
+		4CB47ACEDEC53887EFD6517F /* Pods_Stocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AFFE9FA4B0FE208859A2EC /* Pods_Stocks.framework */; };
 		A00E38E729855F86009175D8 /* StocksMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E38E629855F86009175D8 /* StocksMainPresenter.swift */; };
 		A00E38E929856058009175D8 /* MainScreenConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E38E829856058009175D8 /* MainScreenConfigurator.swift */; };
 		A01003692987C1FB00958890 /* StockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01003682987C1FB00958890 /* StockService.swift */; };
@@ -49,13 +48,11 @@
 		A0B66205297D9D9C00B01505 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06BC3EB297801850043B0CC /* LaunchScreen.storyboard */; };
 		A0B6620B29800B9700B01505 /* PropertyRowStockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6620A29800B9700B01505 /* PropertyRowStockModel.swift */; };
 		A0B662102982A82700B01505 /* PrimaryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6620F2982A82700B01505 /* PrimaryMenu.swift */; };
-		E5B3168A28C9C5669CCF9E76 /* Pods_Stocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECEA1B0AE90C29861679222E /* Pods_Stocks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48AFFE9FA4B0FE208859A2EC /* Pods_Stocks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stocks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53BBD722EB5BBCE7077429DF /* Pods-Stocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stocks.debug.xcconfig"; path = "Target Support Files/Pods-Stocks/Pods-Stocks.debug.xcconfig"; sourceTree = "<group>"; };
-		7CB70DE829B7CD5200D7A7F6 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CB70DEA29B7CD5800D7A7F6 /* SVGKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SVGKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CDA6DF129B7BE6900F768DF /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00E38E629855F86009175D8 /* StocksMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksMainPresenter.swift; sourceTree = "<group>"; };
 		A00E38E829856058009175D8 /* MainScreenConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenConfigurator.swift; sourceTree = "<group>"; };
@@ -98,7 +95,6 @@
 		A0B661D9297D9BAF00B01505 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A0B6620A29800B9700B01505 /* PropertyRowStockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyRowStockModel.swift; sourceTree = "<group>"; };
 		A0B6620F2982A82700B01505 /* PrimaryMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryMenu.swift; sourceTree = "<group>"; };
-		ECEA1B0AE90C29861679222E /* Pods_Stocks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stocks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56E4F4EA92604F9109409DA /* Pods-Stocks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stocks.release.xcconfig"; path = "Target Support Files/Pods-Stocks/Pods-Stocks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,9 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CB70DEB29B7CD5800D7A7F6 /* SVGKit.framework in Frameworks */,
-				7CB70DE929B7CD5200D7A7F6 /* CocoaLumberjack.framework in Frameworks */,
-				E5B3168A28C9C5669CCF9E76 /* Pods_Stocks.framework in Frameworks */,
+				4CB47ACEDEC53887EFD6517F /* Pods_Stocks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,9 +113,7 @@
 		524D54862E7E0F02F5A37E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7CB70DEA29B7CD5800D7A7F6 /* SVGKit.framework */,
-				7CB70DE829B7CD5200D7A7F6 /* CocoaLumberjack.framework */,
-				ECEA1B0AE90C29861679222E /* Pods_Stocks.framework */,
+				48AFFE9FA4B0FE208859A2EC /* Pods_Stocks.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

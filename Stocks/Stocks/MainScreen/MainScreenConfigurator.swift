@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 class MainScreenConfigurator {
     static func config() -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

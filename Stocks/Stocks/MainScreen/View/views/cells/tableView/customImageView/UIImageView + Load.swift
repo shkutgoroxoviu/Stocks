@@ -8,8 +8,6 @@
 
 import UIKit
 import SVGKit
-//import Alamofire
-
 
 class ImageCache {
 
