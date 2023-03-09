@@ -1,0 +1,14 @@
+Target dependency graph (5 targets)
+CocoaLumberjack in Pods, no dependencies
+Kingfisher in Pods, no dependencies
+SVGKit in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Pods-Stocks in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Kingfisher in Pods (explicit)
+SVGKit in Pods (explicit)
+Stocks in Stocks, depends on:
+Pods-Stocks in Pods (implicit dependency via file 'Pods_Stocks.framework' in build phase 'Link Binary')
+CocoaLumberjack in Pods (implicit dependency via options '-framework CocoaLumberjack' in build setting 'OTHER_LDFLAGS')
+Kingfisher in Pods (implicit dependency via options '-framework Kingfisher' in build setting 'OTHER_LDFLAGS')
+SVGKit in Pods (implicit dependency via options '-framework SVGKit' in build setting 'OTHER_LDFLAGS')

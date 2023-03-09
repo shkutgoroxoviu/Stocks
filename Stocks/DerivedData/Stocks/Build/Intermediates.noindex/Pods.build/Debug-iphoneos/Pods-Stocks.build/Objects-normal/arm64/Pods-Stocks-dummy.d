@@ -1,0 +1,4 @@
+dependencies: \
+  /Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Target\ Support\ Files/Pods-Stocks/Pods-Stocks-dummy.m \
+  /Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Pods-Stocks.build/module.modulemap \
+  /Users/gurgenkhorsikan/Library/Mobile\ Documents/com~apple~CloudDocs/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/usr/include/libxml2/libxml/module.modulemap

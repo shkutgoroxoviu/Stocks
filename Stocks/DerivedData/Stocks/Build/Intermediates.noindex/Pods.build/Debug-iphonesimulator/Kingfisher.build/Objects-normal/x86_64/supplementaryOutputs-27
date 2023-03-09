@@ -1,0 +1,75 @@
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/General/Kingfisher.swift":
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Kingfisher.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Kingfisher.swiftdeps"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Kingfisher.dia"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Kingfisher.o"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/Extensions/NSButton+Kingfisher.swift":
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSButton+Kingfisher.dia"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSButton+Kingfisher.swiftdeps"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSButton+Kingfisher.d"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSButton+Kingfisher.o"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/SwiftUI/KFImageOptions.swift":
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageOptions.d"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageOptions.o"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageOptions.swiftdeps"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageOptions.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/General/KingfisherOptionsInfo.swift":
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherOptionsInfo.dia"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherOptionsInfo.d"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherOptionsInfo.o"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherOptionsInfo.swiftdeps"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/Extensions/NSTextAttachment+Kingfisher.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSTextAttachment+Kingfisher.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSTextAttachment+Kingfisher.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSTextAttachment+Kingfisher.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/NSTextAttachment+Kingfisher.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/General/KF.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KF.swiftdeps"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KF.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KF.dia"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KF.o"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/General/KingfisherError.swift":
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherError.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherError.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherError.o"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherError.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/SwiftUI/KFImage.swift":
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImage.d"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImage.o"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImage.swiftdeps"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImage.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/SwiftUI/KFImageRenderer.swift":
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageRenderer.o"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageRenderer.dia"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageRenderer.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageRenderer.swiftdeps"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/General/KFOptionsSetter.swift":
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFOptionsSetter.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFOptionsSetter.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFOptionsSetter.swiftdeps"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFOptionsSetter.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/Cache/MemoryStorage.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/MemoryStorage.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/MemoryStorage.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/MemoryStorage.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/MemoryStorage.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/Image/Placeholder.swift":
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Placeholder.o"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Placeholder.swiftdeps"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Placeholder.dia"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/Placeholder.d"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/SwiftUI/KFImageProtocol.swift":
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageProtocol.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageProtocol.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageProtocol.swiftdeps"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFImageProtocol.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/General/KingfisherManager.swift":
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherManager.d"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherManager.o"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherManager.swiftdeps"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KingfisherManager.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Pods/Kingfisher/Sources/SwiftUI/KFAnimatedImage.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFAnimatedImage.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFAnimatedImage.o"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFAnimatedImage.dia"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Kingfisher.build/Objects-normal/x86_64/KFAnimatedImage.d"

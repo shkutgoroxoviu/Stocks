@@ -1,0 +1,20 @@
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Network/Stock/Stock.swift":
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/Stock-c6ddfd98b8a11022aba928227859e760.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/Stock-c6ddfd98b8a11022aba928227859e760.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/Stock-c6ddfd98b8a11022aba928227859e760.o"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/Stock-c6ddfd98b8a11022aba928227859e760.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/views/subview/PrimaryMenu.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/PrimaryMenu.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/PrimaryMenu.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/PrimaryMenu.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/PrimaryMenu.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/MainScreenConfigurator.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/MainScreenConfigurator.swiftdeps"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/MainScreenConfigurator.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/MainScreenConfigurator.dia"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/MainScreenConfigurator.o"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/SceneDelegate.swift":
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/SceneDelegate.o"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/SceneDelegate.dia"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/SceneDelegate.swiftdeps"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphoneos/Stocks.build/Objects-normal/arm64/SceneDelegate.d"

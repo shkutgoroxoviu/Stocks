@@ -1,0 +1,25 @@
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/AppDelegate.swift":
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/AppDelegate.dia"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/AppDelegate.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/AppDelegate.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/AppDelegate.o"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/StocksMainViewController.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StocksMainViewController.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StocksMainViewController.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StocksMainViewController.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StocksMainViewController.dia"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Data/CoreDataService.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/CoreDataService.swiftdeps"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/CoreDataService.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/CoreDataService.dia"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/CoreDataService.o"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/views/cells/tableView/PropertyRowStock.swift":
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStock.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStock.d"
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStock.dia"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStock.swiftdeps"
+"/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/views/cells/tableView/PropertyRowStockModel.swift":
+  diagnostics: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStockModel.dia"
+  object: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStockModel.o"
+  dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStockModel.d"
+  swift-dependencies: "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/PropertyRowStockModel.swiftdeps"

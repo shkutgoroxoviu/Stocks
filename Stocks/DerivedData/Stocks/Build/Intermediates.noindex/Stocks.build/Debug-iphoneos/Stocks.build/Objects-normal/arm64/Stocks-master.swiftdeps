@@ -1,0 +1,22 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "db734f5409b24d766df062b0c73785a0b719d68184e791f5dd82d9ed932fd605"
+build_start_time: [1676198193, 416877985]
+build_end_time: [1676198197, 484307050]
+inputs:
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/AppDelegate.swift": [1676045246, 712760686]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Extensions/UIImageView + Load.swift": [1676198118, 529615879]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Extensions/UserDefault.swift": [1675875238, 52099704]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/MainScreenConfigurator.swift": [1675422796, 364783048]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/Presenter/StocksMainPresenter.swift": [1676039537, 570508718]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/StocksMainViewController.swift": [1676197778, 234323024]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/views/cells/tableView/PropertyRowStock.swift": [1676198118, 512300729]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/views/cells/tableView/PropertyRowStockModel.swift": [1675709877, 179476737]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/MainScreen/View/views/subview/PrimaryMenu.swift": [1674741354, 326679706]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/SceneDelegate.swift": [1675428823, 435811758]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Data/CoreDataService.swift": [1675783599, 107230186]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Data/StockCoreDataModel+CoreDataClass.swift": [1675170116, 867928266]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Data/StockCoreDataModel+CoreDataProperties.swift": [1675678703, 336933374]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Network/Stock/Company.swift": [1675431001, 799729347]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Network/Stock/Quote.swift": [1675431001, 777785301]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Network/Stock/Stock.swift": [1675433792, 423268318]
+  "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks/Services/Network/Stock/StockService.swift": [1675709746, 986013889]

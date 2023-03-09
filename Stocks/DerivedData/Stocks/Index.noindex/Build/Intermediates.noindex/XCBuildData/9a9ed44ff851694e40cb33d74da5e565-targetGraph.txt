@@ -1,0 +1,51 @@
+Target dependency graph (20 targets)
+Alamofire in Pods, no dependencies
+CocoaLumberjack in Pods, no dependencies
+Kingfisher in Pods, no dependencies
+PocketSVG in Pods, no dependencies
+SVGKit in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Pods-Stocks in Pods, depends on:
+Alamofire in Pods (explicit)
+CocoaLumberjack in Pods (explicit)
+Kingfisher in Pods (explicit)
+PocketSVG in Pods (explicit)
+SVGKit in Pods (explicit)
+Alamofire in Pods, no dependencies
+CocoaLumberjack in Pods, no dependencies
+Kingfisher in Pods, no dependencies
+PocketSVG in Pods, no dependencies
+SVGKit in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Pods-Stocks in Pods, depends on:
+Alamofire in Pods (explicit)
+CocoaLumberjack in Pods (explicit)
+Kingfisher in Pods (explicit)
+PocketSVG in Pods (explicit)
+SVGKit in Pods (explicit)
+Alamofire in Pods, no dependencies
+CocoaLumberjack in Pods, no dependencies
+Kingfisher in Pods, no dependencies
+PocketSVG in Pods, no dependencies
+SVGKit in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Pods-Stocks in Pods, depends on:
+Alamofire in Pods (explicit)
+CocoaLumberjack in Pods (explicit)
+Kingfisher in Pods (explicit)
+PocketSVG in Pods (explicit)
+SVGKit in Pods (explicit)
+Stocks in Stocks, depends on:
+Pods-Stocks in Pods (implicit dependency via file 'Pods_Stocks.framework' in build phase 'Link Binary')
+Alamofire in Pods (implicit dependency via options '-framework Alamofire' in build setting 'OTHER_LDFLAGS')
+CocoaLumberjack in Pods (implicit dependency via options '-framework CocoaLumberjack' in build setting 'OTHER_LDFLAGS')
+Kingfisher in Pods (implicit dependency via options '-framework Kingfisher' in build setting 'OTHER_LDFLAGS')
+PocketSVG in Pods (implicit dependency via options '-framework PocketSVG' in build setting 'OTHER_LDFLAGS')
+SVGKit in Pods (implicit dependency via options '-framework SVGKit' in build setting 'OTHER_LDFLAGS')
+Stocks in Stocks, depends on:
+Pods-Stocks in Pods (implicit dependency via file 'Pods_Stocks.framework' in build phase 'Link Binary')
+Alamofire in Pods (implicit dependency via options '-framework Alamofire' in build setting 'OTHER_LDFLAGS')
+CocoaLumberjack in Pods (implicit dependency via options '-framework CocoaLumberjack' in build setting 'OTHER_LDFLAGS')
+Kingfisher in Pods (implicit dependency via options '-framework Kingfisher' in build setting 'OTHER_LDFLAGS')
+PocketSVG in Pods (implicit dependency via options '-framework PocketSVG' in build setting 'OTHER_LDFLAGS')
+SVGKit in Pods (implicit dependency via options '-framework SVGKit' in build setting 'OTHER_LDFLAGS')

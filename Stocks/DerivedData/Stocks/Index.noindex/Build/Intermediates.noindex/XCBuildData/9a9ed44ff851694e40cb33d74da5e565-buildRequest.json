@@ -1,0 +1,84 @@
+{
+  "_buildCommand2" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd42aa4caa4da0dd353403eebbd5586ae0dc"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd424f5b26bb50db092b171890a22b8a539b"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd42f0e2d74ab74a2ca09c0e367e1a3f969f"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd427add8fbbd12553af2fc6f71a250cc7d9"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd42fa965ff7d4c50522781da8e622650ccc"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd42ba3679b4c4428e6a6d83c5308d3af99b"
+    },
+    {
+      "guid" : "5eba78e819f9f3d8b509ae9952afecc50c46d71b086e4235f6b0e90b539a6239"
+    }
+  ],
+  "containerPath" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/Stocks.xcworkspace",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "undefined_arch",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos16.2",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "armv4t",
+        "armv5",
+        "armv6",
+        "armv7",
+        "armv7f",
+        "armv7s",
+        "armv7k",
+        "arm64",
+        "arm64e"
+      ],
+      "targetArchitecture" : "undefined_arch"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "INDEX_ARENA_INFO_REGULAR_BUILD_PRODUCTS_DIR" : "/Users/gurgenkhorsikan/Stocks/Stocks/Stocks/DerivedData/Stocks/Build/Products",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Kingfisher in Pods, no dependencies
+Pods-Stocks in Pods, depends on:
+Kingfisher in Pods (explicit)

@@ -1,0 +1,3 @@
+Target dependency graph (2 targets)
+Stocks in Stocks, no dependencies
+Stocks in Stocks, no dependencies

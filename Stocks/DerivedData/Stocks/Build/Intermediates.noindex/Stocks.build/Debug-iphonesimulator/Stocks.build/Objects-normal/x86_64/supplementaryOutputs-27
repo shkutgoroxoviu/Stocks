@@ -1,0 +1,20 @@
+"/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/StockCoreDataModel+CoreDataProperties.swift":
+  swift-dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataProperties.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataProperties.o"
+  diagnostics: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataProperties.dia"
+  dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataProperties.d"
+"/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/Stocks/Extensions/UserDefault.swift":
+  diagnostics: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/UserDefault.dia"
+  swift-dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/UserDefault.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/UserDefault.o"
+  dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/UserDefault.d"
+"/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/StockCoreDataModel+CoreDataClass.swift":
+  dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataClass.d"
+  object: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataClass.o"
+  diagnostics: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataClass.dia"
+  swift-dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/StockCoreDataModel+CoreDataClass.swiftdeps"
+"/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/Stocks/Services/Network/Stock/Company.swift":
+  dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/Company.d"
+  diagnostics: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/Company.dia"
+  swift-dependencies: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/Company.swiftdeps"
+  object: "/Users/gurgenkhorsikan/Desktop/Stocks/Stocks/DerivedData/Stocks/Build/Intermediates.noindex/Stocks.build/Debug-iphonesimulator/Stocks.build/Objects-normal/x86_64/Company.o"

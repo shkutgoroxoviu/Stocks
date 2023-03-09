@@ -1,0 +1,33 @@
+Target dependency graph (12 targets)
+CocoaLumberjack in Pods, no dependencies
+Kingfisher in Pods, no dependencies
+PocketSVG in Pods, no dependencies
+SVGKit in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Pods-Stocks in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Kingfisher in Pods (explicit)
+PocketSVG in Pods (explicit)
+SVGKit in Pods (explicit)
+Stocks in Stocks, depends on:
+Pods-Stocks in Pods (implicit dependency via file 'libPods-Stocks.a' in build phase 'Link Binary')
+CocoaLumberjack in Pods (implicit dependency via options '-lCocoaLumberjack' in build setting 'OTHER_LDFLAGS')
+Kingfisher in Pods (implicit dependency via options '-lKingfisher' in build setting 'OTHER_LDFLAGS')
+PocketSVG in Pods (implicit dependency via options '-lPocketSVG' in build setting 'OTHER_LDFLAGS')
+SVGKit in Pods (implicit dependency via options '-lSVGKit' in build setting 'OTHER_LDFLAGS')
+CocoaLumberjack in Pods, no dependencies
+Kingfisher in Pods, no dependencies
+PocketSVG in Pods, no dependencies
+SVGKit in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Pods-Stocks in Pods, depends on:
+CocoaLumberjack in Pods (explicit)
+Kingfisher in Pods (explicit)
+PocketSVG in Pods (explicit)
+SVGKit in Pods (explicit)
+Stocks in Stocks, depends on:
+Pods-Stocks in Pods (implicit dependency via file 'libPods-Stocks.a' in build phase 'Link Binary')
+CocoaLumberjack in Pods (implicit dependency via options '-lCocoaLumberjack' in build setting 'OTHER_LDFLAGS')
+Kingfisher in Pods (implicit dependency via options '-lKingfisher' in build setting 'OTHER_LDFLAGS')
+PocketSVG in Pods (implicit dependency via options '-lPocketSVG' in build setting 'OTHER_LDFLAGS')
+SVGKit in Pods (implicit dependency via options '-lSVGKit' in build setting 'OTHER_LDFLAGS')

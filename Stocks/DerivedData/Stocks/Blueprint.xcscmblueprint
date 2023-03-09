@@ -1,0 +1,22 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "05F3306AB961B86A38951F8E89F4D9FB03484BC9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E2867EF1-9ECF-4C2A-A5E1-800585C1991B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "05F3306AB961B86A38951F8E89F4D9FB03484BC9" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Stocks",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Stocks.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/shkutgoroxoviu\/Stocks.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "05F3306AB961B86A38951F8E89F4D9FB03484BC9"
+    }
+  ]
+}

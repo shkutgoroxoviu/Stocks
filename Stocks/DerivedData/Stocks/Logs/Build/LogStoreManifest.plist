@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>60D765D3-8383-4D82-A5B5-868BE2BFE235</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>60D765D3-8383-4D82-A5B5-868BE2BFE235.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stocks project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Stocks</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build Stocks</string>
+			<key>timeStartedRecording</key>
+			<real>698163860.67356706</real>
+			<key>timeStoppedRecording</key>
+			<real>698163868.80039299</real>
+			<key>title</key>
+			<string>Build Stocks</string>
+			<key>uniqueIdentifier</key>
+			<string>60D765D3-8383-4D82-A5B5-868BE2BFE235</string>
+		</dict>
+		<key>882CD37D-4A75-449F-87A6-634F765ED27E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>882CD37D-4A75-449F-87A6-634F765ED27E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stocks project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Stocks</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build Stocks</string>
+			<key>timeStartedRecording</key>
+			<real>698162112.053303</real>
+			<key>timeStoppedRecording</key>
+			<real>698162115.06816804</real>
+			<key>title</key>
+			<string>Build Stocks</string>
+			<key>uniqueIdentifier</key>
+			<string>882CD37D-4A75-449F-87A6-634F765ED27E</string>
+		</dict>
+		<key>CF9112B5-A8D9-40EE-8666-13384EF3985F</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>CF9112B5-A8D9-40EE-8666-13384EF3985F.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stocks project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Stocks</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build Stocks</string>
+			<key>timeStartedRecording</key>
+			<real>698164253.78327501</real>
+			<key>timeStoppedRecording</key>
+			<real>698164257.58909404</real>
+			<key>title</key>
+			<string>Build Stocks</string>
+			<key>uniqueIdentifier</key>
+			<string>CF9112B5-A8D9-40EE-8666-13384EF3985F</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

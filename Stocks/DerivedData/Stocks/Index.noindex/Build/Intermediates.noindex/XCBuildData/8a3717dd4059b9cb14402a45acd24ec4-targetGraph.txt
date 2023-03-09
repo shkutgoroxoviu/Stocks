@@ -1,0 +1,4 @@
+Target dependency graph (3 targets)
+Kingfisher in Pods, no dependencies
+Kingfisher in Pods, no dependencies
+Kingfisher in Pods, no dependencies
