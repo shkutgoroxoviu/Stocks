@@ -27,9 +27,9 @@ open class PrimaryMenu: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         
         axis = .horizontal
-        alignment = .leading
+        alignment = .fill
         spacing = 20
-        distribution = .fillEqually
+        distribution = .equalSpacing
     }
     
     required public init(coder aDecoder: NSCoder) {

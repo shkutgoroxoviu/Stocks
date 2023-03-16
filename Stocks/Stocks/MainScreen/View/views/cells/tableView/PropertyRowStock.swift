@@ -69,7 +69,7 @@ class PropertyRowStock: UITableViewCell {
         bool ? favoriteButton.setImage(UIImage(named: "selected"), for: .normal) : favoriteButton.setImage(UIImage(named: "Star 1"), for: .normal)
     }
     
-    @IBAction func favoriteButtonAction(_ sender: Any) {
+    @IBAction func favoriteButtonAction(_ sender: UIButton) {
         if isSelected {
             buttonSelected(bool: !isSelected)
             isSelected = !isSelected

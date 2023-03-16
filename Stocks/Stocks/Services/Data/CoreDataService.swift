@@ -30,27 +30,27 @@ class CoreDataService {
     //        }
     //    }
     
-    func update(with stock: Company, quote: Quote) {
+    func update(with stock: Stock) {
         let request: NSFetchRequest<StockCoreDataModel> = StockCoreDataModel.fetchRequest()
-        request.predicate = NSPredicate(format: "ticker == %@", stock.ticker)
+        request.predicate = NSPredicate(format: "ticker == %@", stock.companyProfile.ticker)
         
         do {
             let models = try context.fetch(request)
             
             guard !models.isEmpty else {
-                addStock(stock: stock, quote: quote)
+                addStock(stock: stock)
                 return
             }
             
-            models[0].ticker = stock.ticker
-            models[0].name = stock.name
-            models[0].logo = stock.logo
-            models[0].c = quote.c
-            models[0].d = quote.d
-            models[0].dp = quote.dp
+            models[0].ticker = stock.companyProfile.ticker
+            models[0].name = stock.companyProfile.name
+            models[0].logo = stock.companyProfile.logo
+            models[0].c = stock.quote.c
+            models[0].d = stock.quote.d
+            models[0].dp = stock.quote.dp
             
             try context.save()
-            print("\(stock.ticker) update ✅✅✅")
+            print("\(stock.companyProfile.ticker) update ✅✅✅")
         } catch {
             print(error.localizedDescription)
         }
@@ -68,23 +68,41 @@ class CoreDataService {
         }
     }
     
-    func addStock(stock: Company, quote: Quote) {
+    func addStock(stock: Stock) {
         let entity = NSEntityDescription.entity(forEntityName: "StockCoreDataModel", in: context)
         let taskObject = NSManagedObject(entity: entity!, insertInto: context) as! StockCoreDataModel
         
-        taskObject.name = stock.name
-        taskObject.ticker = stock.ticker
-        taskObject.logo = stock.logo
-        taskObject.c = quote.c
-        taskObject.d = quote.d
-        taskObject.dp = quote.dp
+        taskObject.name = stock.companyProfile.name
+        taskObject.ticker = stock.companyProfile.ticker
+        taskObject.logo = stock.companyProfile.logo
+        taskObject.c = stock.quote.c
+        taskObject.d = stock.quote.d
+        taskObject.dp = stock.quote.dp
         
         do {
             try context.save()
+            print("\(stock.companyProfile.ticker) add ✅✅✅")
         } catch {
             print(error.localizedDescription)
         }
     }
+    
+    func deleteStock(_ ticker: String) {
+           let fetchRequest: NSFetchRequest<StockCoreDataModel> = StockCoreDataModel.fetchRequest()
+           fetchRequest.predicate = NSPredicate(format: "ticker == %@", ticker)
+           
+           do {
+               let result = try context.fetch(fetchRequest)
+               guard !result.isEmpty else { return }
+               guard let tickerModel = result.first else { return}
+               tickerModel.isFavorite = false
+               context.delete(result[0])
+               try context.save()
+               print("\(ticker) delete ❌❌❌")
+           } catch {
+               print(error.localizedDescription)
+           }
+       }
     
     func changeToFavorite(tickerString: String, isFavorite: Bool) {
         
@@ -95,6 +113,9 @@ class CoreDataService {
             let result = try context.fetch(fetchRequest)
             guard let tickerModel = result.first else { return}
             tickerModel.isFavorite = isFavorite
+            if isFavorite == false {
+                deleteStock(tickerString)
+            }
             try context.save()
             print(isFavorite ? "\(tickerString) save ✅✅✅" : "\(tickerString) delete ❌❌❌")
         } catch {

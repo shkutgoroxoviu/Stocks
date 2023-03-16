@@ -35,7 +35,7 @@ class CustomImageView: UIImageView {
         URLSession.shared.dataTask(with: url) { data, _, _ in
             if let data = try? Data(contentsOf: url) {
                 DispatchQueue.main.async {
-                    if let rI =  SVGKImage(data: data) {
+                    if let rI = SVGKImage(data: data) {
                         ImageCache.shared.setObject(rI.uiImage, forKey: urlString as NSString)
                         self.image = rI.uiImage
                         self.stopSpinner()
@@ -51,8 +51,6 @@ class CustomImageView: UIImageView {
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         spinner.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        
         spinner.startAnimating()
     }
     

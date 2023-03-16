@@ -17,8 +17,12 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
     private let primaryMenu = PrimaryMenu()
     @IBOutlet weak var tableView: UITableView!
     private let searchController = UISearchController(searchResultsController: nil)
-    private var navBar = UINavigationBar(frame: CGRect(x: 20, y: 60, width: 340, height: 60))
+    private var navBar = UINavigationBar()
+    private var refreshControl = UIRefreshControl()
     
+    var lastContentOffset: CGFloat = 0
+    var currentIndex: Int = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
@@ -35,29 +39,59 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.sectionHeaderHeight = 1
+        tableView.addSubview(refreshControl)
+        tableView.backgroundColor = .white
         
+        searchController.searchBar.delegate = self
+        
+        primaryMenu.backgroundColor = .white
         primaryMenu.delegate = self
         primaryMenu.configure(with: ["Stocks", "Favorite"])
+        
+        refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
         
         view.addSubview(navBar)
         view.addSubview(primaryMenu)
     }
     
+    @objc func refreshTable(_ sender: AnyObject) {
+       if currentIndex == 0 {
+            presenter?.didLoad()
+       } else {
+           
+       }
+            refreshControl.endRefreshing()
+        }
+    
     func setPrimaryMenuConstraints() {
-        primaryMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45).isActive = true
+        primaryMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35).isActive = true
         primaryMenu.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        primaryMenu.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -10).isActive = true
+        primaryMenu.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -5).isActive = true
         primaryMenu.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 10).isActive = true
     }
     
-    func addNavigationbar() {
-            let navigationItem = UINavigationItem(title: "")
-            navigationItem.titleView = self.searchController.searchBar
-            
-            navBar.shadowImage = UIImage()
-            navBar.setItems([navigationItem], animated: false)
-            self.definesPresentationContext = true
+    func changeCoordPrimaryMenu(value: CGFloat) {
+        UIView.animate(withDuration: 0.5) {
+            self.primaryMenu.topAnchor.constraint(equalTo: self.navBar.bottomAnchor, constant: value).isActive = true
+            self.primaryMenu.layoutIfNeeded()
         }
+    }
+    
+    func changeCoordNavBar(value: Int) {
+        UIView.animate(withDuration: 0.5) {
+            self.navBar.frame = CGRect(x: 30, y: value, width: Int(self.tableView.frame.width), height: 60)
+        }
+    }
+    
+    func addNavigationbar() {
+        let navigationItem = UINavigationItem(title: "")
+        navigationItem.titleView = self.searchController.searchBar
+        
+        navBar.frame = CGRect(x: 30, y: 60, width: view.frame.width - 64, height: 60)
+        navBar.shadowImage = UIImage()
+        navBar.setItems([navigationItem], animated: false)
+        self.definesPresentationContext = true
+    }
     
     private func configSearchBar() {
         searchController.searchBar.searchBarStyle = .minimal
@@ -71,11 +105,13 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         searchController.searchBar.searchTextField.textColor = .black
         searchController.searchBar.tintColor = .black
         searchController.searchBar.setImage(UIImage(named: "search"), for: .search, state: .normal)
+        searchController.searchBar.setImage(UIImage(named: "cancel"), for: .clear, state: .normal)
         searchController.searchBar.searchTextField.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Find company or ticker"
         searchController.searchBar.backgroundColor = .white
+        searchController.searchBar.showsCancelButton = false
         navigationItem.searchController?.searchBar.tintColor = .black
         self.definesPresentationContext = true
     }
@@ -139,8 +175,51 @@ extension StocksMainViewController: UITableViewDelegate, UITableViewDataSource {
         let sectionSpacing: CGFloat = 1
         return sectionSpacing
     }
+    
+    //MARK: Delete
+        func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+            if searchController.isActive {
+                return .none
+            } else {
+                return .delete
+            }
+        }
+        
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                guard let model = presenter?.rowModels[indexPath.section] else { return }
+                presenter?.deleteStock(at: model.tickerName)
+                let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                tableView.deleteSections(indexSet, with: .fade)
+            }
+        }
 }
 
+extension StocksMainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetY = scrollView.contentOffset.y
+        
+        if contentOffsetY > lastContentOffset && lastContentOffset >= 0 || contentOffsetY > 900 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.changeCoordNavBar(value: 0)
+                self.changeCoordPrimaryMenu(value: 10)
+                self.navBar.isHidden = true
+            }
+        } else if lastContentOffset <= -0.33333333333333337 || contentOffsetY < lastContentOffset {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.changeCoordNavBar(value: 60)
+                self.changeCoordPrimaryMenu(value: 10)
+                self.navBar.isHidden = false
+            }
+        }
+        lastContentOffset = contentOffsetY
+        
+        if searchController.searchBar.isFirstResponder {
+            searchController.searchBar.resignFirstResponder()
+            searchController.isActive = false
+        }
+    }
+}
 
 extension StocksMainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -152,6 +231,7 @@ extension StocksMainViewController: UISearchResultsUpdating {
 
 extension StocksMainViewController: MenuStackDelegate {
     func changeMenu(index: Int) {
+        self.currentIndex = index
         presenter?.changeMenu(index: index)
     }
 }
@@ -160,6 +240,10 @@ extension StocksMainViewController: TapFavoriteProtocol {
     func didTap(bool: Bool, name: String) {
         presenter?.changeIsFavorite(bool: bool, ticker: name)
     }
-    
-    
+}
+
+extension StocksMainViewController{
+    func didPresentSearchController(searchController: UISearchController) {
+            self.searchController.searchBar.becomeFirstResponder()
+    }
 }

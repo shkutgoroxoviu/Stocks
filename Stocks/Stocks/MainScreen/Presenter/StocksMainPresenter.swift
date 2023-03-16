@@ -20,7 +20,7 @@ protocol StocksMainPresenterProtocol {
     
     func didLoad()
     
-    func loadStock(ticker: String)
+    func deleteStock(at ticker: String)
     
     func changeMenu(index: Int)
     
@@ -48,7 +48,30 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         filteredRows = rowModels.filter { model -> Bool in
             return model.tickerName.lowercased().contains(searchText.lowercased())
         }
+            self.networkService.fetchStock(for: searchText.lowercased()) { [weak self]  stock in
+                let model = PropertyRowStockModel(
+                    tickerName: stock.companyProfile.ticker,
+                    name: stock.companyProfile.name,
+                    image: stock.companyProfile.logo,
+                    deltaPrice: stock.quote.d,
+                    currentPrice: stock.quote.c,
+                    deltaProcent: stock.quote.dp,
+                    isFavorite: false
+                )
+                guard let self = self else { return }
+                self.deleteRepeated(text: searchText, stock: stock, model: model)
+                self.view?.reloadData()
+            }
         view?.reloadData()
+    }
+    
+    func deleteRepeated(text: String, stock: Stock, model: PropertyRowStockModel ) {
+        if self.rowModels.contains(where: { $0.tickerName.lowercased() == text.lowercased() }) {
+            return
+        } else {
+            self.addStock(at: stock)
+            self.filteredRows.append(model)
+        }
     }
     
     func didLoad() {
@@ -57,8 +80,8 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
     
     func loadAllTickers() {
         for ticker in tickers {
-            networkService.fetchStock(for: ticker) { [weak self] stock, quote  in
-                self!.coreDataService.update(with: stock, quote: quote)
+            networkService.fetchStock(for: ticker) { [weak self] stock  in
+                self!.coreDataService.update(with: stock)
             }
         }
         update()
@@ -81,41 +104,42 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         view?.reloadData()
     }
     
-    func loadStock(ticker: String) {
-        
+    func addStock(at stock: Stock) {
+        coreDataService.addStock(stock: stock)
+        UserDefaults.tickers.append(stock.companyProfile.ticker)
+        update()
     }
     
-    func addStock(at stock: Company, quote: Quote) {
-        coreDataService.addStock(stock: stock, quote: quote)
-        UserDefaults.tickers.append(stock.ticker)
+    func deleteStock(at ticker: String) {
+        coreDataService.deleteStock(ticker)
+        UserDefaults.tickers.removeAll { $0 == ticker }
         update()
     }
     
     func didTapFavoriteMenuItem() {
-            for model in currentList {
-                let ticker = model.tickerName
-                
-                if coreDataService.checkToFavorite(from: ticker) {
-                    favoriteModels.append(model)
-                }
+        for model in currentList {
+            let ticker = model.tickerName
+            if coreDataService.checkToFavorite(from: ticker) {
+                favoriteModels.append(model)
             }
         }
+    }
     
     func changeIsFavorite(bool: Bool, ticker: String) {
         coreDataService.changeToFavorite(tickerString: ticker, isFavorite: bool)
     }
     
     func changeMenu(index: Int) {
-            switch index {
-            case 0:
-                favoriteModels = []
-                update()
-            case 1:
-                didTapFavoriteMenuItem()
-                currentList = favoriteModels
-                view?.reloadData()
-            default:
-                return
-            }
+        switch index {
+        case 0:
+            favoriteModels = []
+            update()
+        case 1:
+            didTapFavoriteMenuItem()
+            currentList = favoriteModels
+            view?.reloadData()
+        default:
+            return
         }
+    }
 }
