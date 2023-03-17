@@ -11,25 +11,6 @@ class CoreDataService {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context = appDelegate.persistentContainer.viewContext
     
-    //    func fetchOneElement(name: String) -> StockCoreDataModel? {
-    //        // Создаем запрос в базу данных, который возвращает все элементы
-    //        let request: NSFetchRequest<StockCoreDataModel> = StockCoreDataModel.fetchRequest()
-    //        // Добавляем параметр для запроса, чтобы получить определенный элемент
-    //        request.predicate = NSPredicate(format: "companyProfile == %@", name)
-    //
-    //        do {
-    //            let model = try context.fetch(request)
-    //
-    //            guard !model.isEmpty else {
-    //                return nil
-    //            }
-    //            return model[0]
-    //        } catch {
-    //            print(error.localizedDescription)
-    //            return nil
-    //        }
-    //    }
-    
     func update(with stock: Stock) {
         let request: NSFetchRequest<StockCoreDataModel> = StockCoreDataModel.fetchRequest()
         request.predicate = NSPredicate(format: "ticker == %@", stock.companyProfile.ticker)
@@ -113,9 +94,7 @@ class CoreDataService {
             let result = try context.fetch(fetchRequest)
             guard let tickerModel = result.first else { return}
             tickerModel.isFavorite = isFavorite
-            if isFavorite == false {
-                deleteStock(tickerString)
-            }
+            
             try context.save()
             print(isFavorite ? "\(tickerString) save ✅✅✅" : "\(tickerString) delete ❌❌❌")
         } catch {

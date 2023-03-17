@@ -70,14 +70,14 @@ class PropertyRowStock: UITableViewCell {
     }
     
     @IBAction func favoriteButtonAction(_ sender: UIButton) {
-        if isSelected {
-            buttonSelected(bool: !isSelected)
-            isSelected = !isSelected
+        if favoriteButton.imageView?.image == UIImage(named: "selected")  {
+            buttonSelected(bool: false)
+            isHighlighted = false
             
             delegate?.didTap(bool: false, name: stockTicker.text ?? "")
-        } else {
-            buttonSelected(bool: !isSelected)
-            isSelected = !isSelected
+        } else if favoriteButton.imageView?.image == UIImage(named: "Star 1") {
+            buttonSelected(bool: true)
+            isHighlighted = true
             
             delegate?.didTap(bool: true, name: stockTicker.text ?? "")
         }

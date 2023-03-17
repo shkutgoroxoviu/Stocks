@@ -22,6 +22,7 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
     
     var lastContentOffset: CGFloat = 0
     var currentIndex: Int = 0
+    var quantitySections: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,13 +56,13 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
     }
     
     @objc func refreshTable(_ sender: AnyObject) {
-       if currentIndex == 0 {
+        if currentIndex == 0 {
             presenter?.didLoad()
-       } else {
-           
-       }
-            refreshControl.endRefreshing()
+        } else {
+            presenter?.refreshFavoriteMenu()
         }
+        refreshControl.endRefreshing()
+    }
     
     func setPrimaryMenuConstraints() {
         primaryMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35).isActive = true
@@ -142,6 +143,7 @@ extension StocksMainViewController: UITableViewDelegate, UITableViewDataSource {
         if isFiltering {
             return presenter?.filteredRows.count ?? 0
         }
+        quantitySections = presenter?.currentList.count ?? 0
         return presenter?.currentList.count ?? 0
     }
     
@@ -199,13 +201,13 @@ extension StocksMainViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffsetY = scrollView.contentOffset.y
         
-        if contentOffsetY > lastContentOffset && lastContentOffset >= 0 || contentOffsetY > 900 {
+        if contentOffsetY > lastContentOffset && lastContentOffset >= 1 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.changeCoordNavBar(value: 0)
                 self.changeCoordPrimaryMenu(value: 10)
                 self.navBar.isHidden = true
             }
-        } else if lastContentOffset <= -0.33333333333333337 || contentOffsetY < lastContentOffset {
+        } else if contentOffsetY < lastContentOffset && lastContentOffset < 700 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.changeCoordNavBar(value: 60)
                 self.changeCoordPrimaryMenu(value: 10)
@@ -224,7 +226,6 @@ extension StocksMainViewController: UIScrollViewDelegate {
 extension StocksMainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        
         presenter?.filterContentForSearchText(text)
     }
 }
@@ -244,6 +245,6 @@ extension StocksMainViewController: TapFavoriteProtocol {
 
 extension StocksMainViewController{
     func didPresentSearchController(searchController: UISearchController) {
-            self.searchController.searchBar.becomeFirstResponder()
+        self.searchController.searchBar.becomeFirstResponder()
     }
 }

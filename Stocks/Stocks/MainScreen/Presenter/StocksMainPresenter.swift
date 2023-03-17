@@ -25,6 +25,8 @@ protocol StocksMainPresenterProtocol {
     func changeMenu(index: Int)
     
     func changeIsFavorite(bool: Bool, ticker: String)
+    
+    func refreshFavoriteMenu()
 }
 
 class StocksMainPresenter: StocksMainPresenterProtocol {
@@ -41,6 +43,8 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
     var rowModels: [PropertyRowStockModel] = []
     var favoriteModels: [PropertyRowStockModel] = []
     var currentList: [PropertyRowStockModel] = []
+    
+    var currentIndex: Int = 0
     
     var dispatchGroup = DispatchGroup()
     
@@ -78,10 +82,18 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         loadAllTickers()
     }
     
+    func refreshFavoriteMenu() {
+        favoriteModels = []
+        didTapFavoriteMenuItem()
+        currentList = favoriteModels
+        view?.reloadData()
+    }
+    
     func loadAllTickers() {
         for ticker in tickers {
             networkService.fetchStock(for: ticker) { [weak self] stock  in
-                self!.coreDataService.update(with: stock)
+                guard let self = self else { return }
+                self.coreDataService.update(with: stock)
             }
         }
         update()
@@ -125,8 +137,20 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         }
     }
     
+    func detectingCurrentIndex(index: Int) {
+        if index == 0 {
+            self.update()
+        } else  {
+            favoriteModels = []
+            didTapFavoriteMenuItem()
+            currentList = favoriteModels
+            view?.reloadData()
+        }
+    }
+    
     func changeIsFavorite(bool: Bool, ticker: String) {
         coreDataService.changeToFavorite(tickerString: ticker, isFavorite: bool)
+        detectingCurrentIndex(index: currentIndex)
     }
     
     func changeMenu(index: Int) {
@@ -134,9 +158,11 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         case 0:
             favoriteModels = []
             update()
+            currentIndex = index
         case 1:
             didTapFavoriteMenuItem()
             currentList = favoriteModels
+            currentIndex = index
             view?.reloadData()
         default:
             return

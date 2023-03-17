@@ -14,29 +14,29 @@ class StockService {
     
     func fetchStock(for ticker: String, complitions: @escaping (Stock) -> Void) {
         guard let urlCompany = URL(string: "https://finnhub.io/api/v1/stock/profile2?symbol=\(ticker)&token=\(apiKey)") else { return }
-            guard let urlQuote = URL(string:"https://finnhub.io/api/v1/quote?symbol=\(ticker)&token=\(apiKey)") else { return }
+        guard let urlQuote = URL(string:"https://finnhub.io/api/v1/quote?symbol=\(ticker)&token=\(apiKey)") else { return }
+        
+        let requestCompany = URLRequest(url: urlCompany)
+        let requestQuote = URLRequest(url: urlQuote)
+        
+        URLSession.shared.dataTask(with: requestCompany) { data, respone, error in
+            guard let data = data else {
+                print(error?.localizedDescription)
+                return
+            }
+            guard let company = self.parseJson(type: Company.self, data: data) else { return }
             
-            let requestCompany = URLRequest(url: urlCompany)
-            let requestQuote = URLRequest(url: urlQuote)
-            
-            URLSession.shared.dataTask(with: requestCompany) { data, respone, error in
+            URLSession.shared.dataTask(with: requestQuote) { data, response, error in
                 guard let data = data else {
                     print(error?.localizedDescription)
                     return
                 }
-                guard let company = self.parseJson(type: Company.self, data: data) else { return }
+                guard let quote = self.parseJson(type: Quote.self, data: data) else { return }
                 
-                URLSession.shared.dataTask(with: requestQuote) { data, response, error in
-                    guard let data = data else {
-                        print(error?.localizedDescription)
-                        return
-                    }
-                    guard let quote = self.parseJson(type: Quote.self, data: data) else { return }
-                    
-                    let stock = Stock(companyProfile: company, quote: quote)
-                    complitions(stock)
-                }.resume()
+                let stock = Stock(companyProfile: company, quote: quote)
+                complitions(stock)
             }.resume()
+        }.resume()
     }
     
     func parseJson<T: Codable>(type: T.Type, data: Data) -> T? {
