@@ -25,17 +25,18 @@ class StockService {
                 return
             }
             guard let company = self.parseJson(type: Company.self, data: data) else { return }
-            
-            URLSession.shared.dataTask(with: requestQuote) { data, response, error in
-                guard let data = data else {
-                    print(error?.localizedDescription)
-                    return
-                }
-                guard let quote = self.parseJson(type: Quote.self, data: data) else { return }
-                
-                let stock = Stock(companyProfile: company, quote: quote)
-                complitions(stock)
-            }.resume()
+            DispatchQueue.main.async {
+                URLSession.shared.dataTask(with: requestQuote) { data, response, error in
+                    guard let data = data else {
+                        print(error?.localizedDescription)
+                        return
+                    }
+                    guard let quote = self.parseJson(type: Quote.self, data: data) else { return }
+                    
+                    let stock = Stock(companyProfile: company, quote: quote)
+                    complitions(stock)
+                }.resume()
+            }
         }.resume()
     }
     

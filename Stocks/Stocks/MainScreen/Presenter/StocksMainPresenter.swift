@@ -8,7 +8,7 @@
 import Foundation
 
 protocol StocksMainPresenterProtocol {
-    var filteredRows: [PropertyRowStockModel] { get }
+//    var filteredRows: [PropertyRowStockModel] { get set }
     
     var rowModels: [PropertyRowStockModel] { get set }
     
@@ -16,7 +16,9 @@ protocol StocksMainPresenterProtocol {
     
     var currentList: [PropertyRowStockModel] { get set }
     
-    func filterContentForSearchText(_ searchText: String)
+    func openSearchVC()
+    
+    func openDetailedVC(for index: Int)
     
     func didLoad()
     
@@ -27,6 +29,8 @@ protocol StocksMainPresenterProtocol {
     func changeIsFavorite(bool: Bool, ticker: String)
     
     func refreshFavoriteMenu()
+    
+    func didTapFavoriteMenuItem()
 }
 
 class StocksMainPresenter: StocksMainPresenterProtocol {
@@ -45,37 +49,25 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
     var currentList: [PropertyRowStockModel] = []
     
     var currentIndex: Int = 0
+    var text: String?
     
     var dispatchGroup = DispatchGroup()
     
-    func filterContentForSearchText(_ searchText: String) {
-        filteredRows = rowModels.filter { model -> Bool in
-            return model.tickerName.lowercased().contains(searchText.lowercased())
-        }
-            self.networkService.fetchStock(for: searchText.lowercased()) { [weak self]  stock in
-                let model = PropertyRowStockModel(
-                    tickerName: stock.companyProfile.ticker,
-                    name: stock.companyProfile.name,
-                    image: stock.companyProfile.logo,
-                    deltaPrice: stock.quote.d,
-                    currentPrice: stock.quote.c,
-                    deltaProcent: stock.quote.dp,
-                    isFavorite: false
-                )
-                guard let self = self else { return }
-                self.deleteRepeated(text: searchText, stock: stock, model: model)
-                self.view?.reloadData()
-            }
-        view?.reloadData()
+    func openSearchVC() {
+        let vc = SearchScreenConfigurator.config()
+        view?.openSearchVC(vc: vc)
     }
     
-    func deleteRepeated(text: String, stock: Stock, model: PropertyRowStockModel ) {
-        if self.rowModels.contains(where: { $0.tickerName.lowercased() == text.lowercased() }) {
-            return
+    func openDetailedVC(for index: Int) {
+        var name = ""
+        if currentIndex == 0 {
+            name = rowModels[index].tickerName
         } else {
-            self.addStock(at: stock)
-            self.filteredRows.append(model)
+            name = favoriteModels[index].tickerName
         }
+        guard let model = coreDataService.fetchOneElement(name: name) else { return }
+        let vc = DetailedScreenConfigurator.config(with: model)
+        view?.openDetailedVC(vc: vc)
     }
     
     func didLoad() {
@@ -83,10 +75,9 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
     }
     
     func refreshFavoriteMenu() {
+        loadAllTickers()
         favoriteModels = []
         didTapFavoriteMenuItem()
-        currentList = favoriteModels
-        view?.reloadData()
     }
     
     func loadAllTickers() {
@@ -135,16 +126,16 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
                 favoriteModels.append(model)
             }
         }
+        currentList = favoriteModels
+        view?.reloadData()
     }
     
     func detectingCurrentIndex(index: Int) {
         if index == 0 {
             self.update()
-        } else  {
+        } else {
             favoriteModels = []
             didTapFavoriteMenuItem()
-            currentList = favoriteModels
-            view?.reloadData()
         }
     }
     
@@ -156,14 +147,15 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
     func changeMenu(index: Int) {
         switch index {
         case 0:
+            loadAllTickers()
             favoriteModels = []
             update()
             currentIndex = index
         case 1:
+            loadAllTickers()
+            favoriteModels = []
             didTapFavoriteMenuItem()
-            currentList = favoriteModels
             currentIndex = index
-            view?.reloadData()
         default:
             return
         }

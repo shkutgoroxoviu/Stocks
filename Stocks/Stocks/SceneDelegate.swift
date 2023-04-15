@@ -16,9 +16,12 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
+        let viewController = MainScreenConfigurator.config()
+        let searchController = SearchScreenConfigurator.config()
+        let navController = UINavigationController(rootViewController: viewController)
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = MainScreenConfigurator.config()
+        window?.rootViewController = navController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

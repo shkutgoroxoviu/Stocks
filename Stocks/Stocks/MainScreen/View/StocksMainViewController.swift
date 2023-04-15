@@ -9,6 +9,8 @@ import UIKit
 
 protocol StocksMainViewProtocol: AnyObject {
     func reloadData()
+    func openSearchVC(vc: UIViewController)
+    func openDetailedVC(vc: UIViewController)
 }
 
 class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISearchControllerDelegate, UISearchBarDelegate {
@@ -17,24 +19,37 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
     private let primaryMenu = PrimaryMenu()
     @IBOutlet weak var tableView: UITableView!
     private let searchController = UISearchController(searchResultsController: nil)
-    private var navBar = UINavigationBar()
     private var refreshControl = UIRefreshControl()
     
-    var lastContentOffset: CGFloat = 0
+    var cornerRadiusDict: [IndexPath: CGFloat] = [:]
     var currentIndex: Int = 0
-    var quantitySections: Int = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
         configSearchBar()
-        addNavigationbar()
-        presenter?.didLoad()
         setPrimaryMenuConstraints()
+        presenter?.didLoad()
+        createGestureRecognizer()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        detectedCurrentIndex()
+    }
+    
+    func detectedCurrentIndex() {
+        if currentIndex == 0 {
+            presenter?.didLoad()
+        } else {
+            presenter?.favoriteModels = []
+            presenter?.didTapFavoriteMenuItem()
+        }
+    }
+
     func configUI() {
         let nib = UINib(nibName: PropertyRowStock.reuseID, bundle: nil)
+        let headerFooterView = UIView()
         tableView.register(nib, forCellReuseIdentifier: PropertyRowStock.reuseID)
         tableView.delegate = self
         tableView.dataSource = self
@@ -42,17 +57,68 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         tableView.sectionHeaderHeight = 1
         tableView.addSubview(refreshControl)
         tableView.backgroundColor = .white
+        tableView.tableHeaderView?.alpha = 0.0
+        tableView.sectionIndexBackgroundColor = .white
+        tableView.showsVerticalScrollIndicator = false
+        
+        headerFooterView.backgroundColor = .clear
+        UITableViewHeaderFooterView.appearance().backgroundView = headerFooterView
+        
+        navigationItem.searchController = searchController
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = .white
         
         searchController.searchBar.delegate = self
-        
+        searchController.delegate = self
+
         primaryMenu.backgroundColor = .white
         primaryMenu.delegate = self
         primaryMenu.configure(with: ["Stocks", "Favorite"])
         
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
         
-        view.addSubview(navBar)
         view.addSubview(primaryMenu)
+    }
+
+    func createGestureRecognizer() {
+        let swipeleft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeleft.direction = .left
+        self.view.addGestureRecognizer(swipeleft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeDown.direction = .up
+        self.view.addGestureRecognizer(swipeDown)
+    }
+    
+    @objc func handleSwipe(_ sender: UISwipeGestureRecognizer) {
+        if sender.direction == .left {
+            presenter?.changeMenu(index: 1)
+            currentIndex = 1
+            primaryMenu.forceUpdatePosition(1)
+        } else {
+            presenter?.changeMenu(index: 0)
+            currentIndex = 0
+            primaryMenu.forceUpdatePosition(0)
+        }
+        
+        if sender.direction == .up {
+            searchController.searchBar.resignFirstResponder()
+            presenter?.changeMenu(index: 0)
+            primaryMenu.forceUpdatePosition(0)
+        } else if sender.direction == .down {
+            searchController.searchBar.resignFirstResponder()
+            presenter?.changeMenu(index: 0)
+            primaryMenu.forceUpdatePosition(0)
+        }
     }
     
     @objc func refreshTable(_ sender: AnyObject) {
@@ -61,41 +127,27 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         } else {
             presenter?.refreshFavoriteMenu()
         }
-        refreshControl.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.refreshControl.endRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top), animated: true)
+        }
     }
     
     func setPrimaryMenuConstraints() {
-        primaryMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35).isActive = true
-        primaryMenu.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        primaryMenu.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -5).isActive = true
-        primaryMenu.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 10).isActive = true
-    }
-    
-    func changeCoordPrimaryMenu(value: CGFloat) {
-        UIView.animate(withDuration: 0.5) {
-            self.primaryMenu.topAnchor.constraint(equalTo: self.navBar.bottomAnchor, constant: value).isActive = true
-            self.primaryMenu.layoutIfNeeded()
-        }
-    }
-    
-    func changeCoordNavBar(value: Int) {
-        UIView.animate(withDuration: 0.5) {
-            self.navBar.frame = CGRect(x: 30, y: value, width: Int(self.tableView.frame.width), height: 60)
-        }
-    }
-    
-    func addNavigationbar() {
-        let navigationItem = UINavigationItem(title: "")
-        navigationItem.titleView = self.searchController.searchBar
-        
-        navBar.frame = CGRect(x: 30, y: 60, width: view.frame.width - 64, height: 60)
-        navBar.shadowImage = UIImage()
-        navBar.setItems([navigationItem], animated: false)
-        self.definesPresentationContext = true
+        primaryMenu.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        primaryMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        primaryMenu.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        primaryMenu.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -25).isActive = true
     }
     
     private func configSearchBar() {
-        searchController.searchBar.searchBarStyle = .minimal
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont(name: "Montserrat-SemiBold", size: 16) as Any
+        ]
+        searchController.searchBar.searchBarStyle = .default
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchController.definesPresentationContext = true
         searchController.searchBar.searchTextField.layer.cornerRadius = 18
         searchController.searchBar.searchTextField.layer.masksToBounds = true
         searchController.searchBar.searchTextField.backgroundColor = .white
@@ -107,14 +159,23 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         searchController.searchBar.tintColor = .black
         searchController.searchBar.setImage(UIImage(named: "search"), for: .search, state: .normal)
         searchController.searchBar.setImage(UIImage(named: "cancel"), for: .clear, state: .normal)
-        searchController.searchBar.searchTextField.font = UIFont(name: "Montserrat-SemiBold", size: 16)
-        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Find company or ticker"
+        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: attributes)
         searchController.searchBar.backgroundColor = .white
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.clearsContextBeforeDrawing = true
+        
+        navigationItem.titleView?.backgroundColor = .white
         navigationItem.searchController?.searchBar.tintColor = .black
-        self.definesPresentationContext = true
+    }
+    
+    func openSearchVC(vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func openDetailedVC(vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func reloadData() {
@@ -122,41 +183,22 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
             self.tableView.reloadData()
         }
     }
-    
-    private var searchBarIsEmpty: Bool {
-        guard let text = searchController.searchBar.text else { return  false }
-        return text.isEmpty
-    }
-    
-    private var isFiltering: Bool {
-        return searchController.isActive && !searchBarIsEmpty
-    }
 }
 
 extension StocksMainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if isFiltering {
-            return presenter?.filteredRows.count ?? 0
-        }
-        quantitySections = presenter?.currentList.count ?? 0
         return presenter?.currentList.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PropertyRowStock.reuseID, for: indexPath) as! PropertyRowStock
-        guard let presenter = presenter else { return cell }
         guard let model = self.presenter?.currentList else { return UITableViewCell() }
-        
-        if isFiltering {
-            cell.config(with: presenter.filteredRows[indexPath.section])
-        } else {
-            cell.config(with: model[indexPath.section])
-        }
+ 
+        cell.config(with: model[indexPath.section])
         
         if indexPath.section % 2 != 0 {
             cell.setupColor(color: UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00))
@@ -164,69 +206,56 @@ extension StocksMainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setupColor(color: UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.00))
         }
         
-        cell.changeColorDelta(value: model[indexPath.section].deltaProcent)
+        cell.changeColorDelta(value: model[indexPath.section].deltaPrice)
         cell.delegate = self
-
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 68
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let sectionSpacing: CGFloat = 1
+        var sectionSpacing: CGFloat = 1
+        if section == 0 {
+            sectionSpacing = 0
+        }
         return sectionSpacing
     }
     
-    //MARK: Delete
-        func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-            if searchController.isActive {
-                return .none
-            } else {
-                return .delete
-            }
-        }
-        
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                guard let model = presenter?.rowModels[indexPath.section] else { return }
-                presenter?.deleteStock(at: model.tickerName)
-                let indexSet = IndexSet(arrayLiteral: indexPath.section)
-                tableView.deleteSections(indexSet, with: .fade)
-            }
-        }
-}
-
-extension StocksMainViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let contentOffsetY = scrollView.contentOffset.y
-        
-        if contentOffsetY > lastContentOffset && lastContentOffset >= 1 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.changeCoordNavBar(value: 0)
-                self.changeCoordPrimaryMenu(value: 10)
-                self.navBar.isHidden = true
-            }
-        } else if contentOffsetY < lastContentOffset && lastContentOffset < 700 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.changeCoordNavBar(value: 60)
-                self.changeCoordPrimaryMenu(value: 10)
-                self.navBar.isHidden = false
-            }
-        }
-        lastContentOffset = contentOffsetY
-        
-        if searchController.searchBar.isFirstResponder {
-            searchController.searchBar.resignFirstResponder()
-            searchController.isActive = false
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        if currentIndex != 0 {
+//            return .none
+//        }
+//        return .delete
+//    }
+//    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete && currentIndex == 0 {
+//            guard let model = presenter?.rowModels[indexPath.section] else { return }
+//            presenter?.deleteStock(at: model.tickerName)
+//            let indexSet = IndexSet(arrayLiteral: indexPath.section)
+//            tableView.deleteSections(indexSet, with: .fade)
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.layer.cornerRadius = 16
+            cell.contentView.clipsToBounds = true
+            cell.setCellAppearance()
         }
     }
-}
-
-extension StocksMainViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        presenter?.filterContentForSearchText(text)
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
+            cell.setCellAppearance()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.openDetailedVC(for: indexPath.section)
     }
 }
 
@@ -244,7 +273,9 @@ extension StocksMainViewController: TapFavoriteProtocol {
 }
 
 extension StocksMainViewController{
-    func didPresentSearchController(searchController: UISearchController) {
-        self.searchController.searchBar.becomeFirstResponder()
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        presenter?.openSearchVC()
+        return false
     }
 }
+

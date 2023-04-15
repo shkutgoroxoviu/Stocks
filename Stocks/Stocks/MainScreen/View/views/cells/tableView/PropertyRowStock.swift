@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol TapFavoriteProtocol {
     func didTap(bool: Bool, name: String)
 }
 
 class PropertyRowStock: UITableViewCell {
-    
     static var reuseID = "PropertyRowStock"
+    
     var delegate: TapFavoriteProtocol?
     
     @IBOutlet weak private var deltaProcent: UILabel!
@@ -35,7 +36,12 @@ class PropertyRowStock: UITableViewCell {
         currentPrice.textAlignment = .right
         companyName.textAlignment = .left
         stockTicker.textAlignment = .left
+        var configuration = UIButton.Configuration.filled()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40)
+        favoriteButton.configuration = configuration
+        favoriteButton.configuration?.baseBackgroundColor = .clear
         self.layer.cornerRadius = 16
+        self.contentView.layer.cornerRadius = 16
         self.layer.masksToBounds = true
         self.selectionStyle = .none
     }
@@ -52,7 +58,6 @@ class PropertyRowStock: UITableViewCell {
             deltaProcent.textColor = UIColor(red: 0.14, green: 0.70, blue: 0.14, alpha: 1.00)
             deltaPrice.textColor = UIColor(red: 0.14, green: 0.70, blue: 0.14, alpha: 1.00)
         }
-        
     }
     
     func config(with model: PropertyRowStockModel) {
@@ -72,17 +77,22 @@ class PropertyRowStock: UITableViewCell {
     @IBAction func favoriteButtonAction(_ sender: UIButton) {
         if favoriteButton.imageView?.image == UIImage(named: "selected")  {
             buttonSelected(bool: false)
-            isHighlighted = false
+            favoriteButton.isSelected = !favoriteButton.isSelected
             
             delegate?.didTap(bool: false, name: stockTicker.text ?? "")
         } else if favoriteButton.imageView?.image == UIImage(named: "Star 1") {
             buttonSelected(bool: true)
-            isHighlighted = true
+            favoriteButton.isSelected = !favoriteButton.isSelected
             
             delegate?.didTap(bool: true, name: stockTicker.text ?? "")
         }
     }
 }
 
-
+extension UITableViewCell {
+    func setCellAppearance() {
+        self.layer.cornerRadius = 16
+        self.clipsToBounds = true
+    }
+}
 
