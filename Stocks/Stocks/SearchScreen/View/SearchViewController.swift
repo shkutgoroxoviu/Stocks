@@ -153,7 +153,6 @@ class SearchViewController: UIViewController, UISearchControllerDelegate, UISear
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: attributes)
-        searchController.searchBar.searchTextField.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         searchController.searchBar.backgroundColor = .white
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.showsCancelButton = false

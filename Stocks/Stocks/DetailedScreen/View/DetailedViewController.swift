@@ -120,6 +120,7 @@ class DetailedViewController: UIViewController, DetailedViewProtocol {
         chart.rightAxis.enabled = false // Отключите правую ось
         chart.legend.enabled = false
         chart.notifyDataSetChanged()
+        
     }
     
     private func setupViews() {
