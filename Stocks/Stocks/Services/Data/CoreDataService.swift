@@ -48,7 +48,7 @@ class CoreDataService {
             models[0].c = stock.quote.c
             models[0].d = stock.quote.d
             models[0].dp = stock.quote.dp
-            
+        
             try context.save()
             print("\(stock.companyProfile.ticker) update ✅✅✅")
         } catch {

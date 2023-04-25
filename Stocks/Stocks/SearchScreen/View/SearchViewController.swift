@@ -153,6 +153,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate, UISear
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: attributes)
+        searchController.searchBar.searchTextField.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         searchController.searchBar.backgroundColor = .white
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.showsCancelButton = false
@@ -278,7 +279,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard var presenter = presenter else { return }
+        guard let presenter = presenter else { return }
         presenter.detectRepeated(text: presenter.filteredRows[indexPath.section].tickerName)
         presenter.openDetailedVC(for: indexPath.section)
     }

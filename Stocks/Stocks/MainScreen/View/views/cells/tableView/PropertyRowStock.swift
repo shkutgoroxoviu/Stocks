@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SVGKit
 
 protocol TapFavoriteProtocol {
     func didTap(bool: Bool, name: String)
@@ -45,7 +46,7 @@ class PropertyRowStock: UITableViewCell {
         self.layer.masksToBounds = true
         self.selectionStyle = .none
     }
-    
+
     func setupColor(color: UIColor) {
         self.backgroundColor = color
     }

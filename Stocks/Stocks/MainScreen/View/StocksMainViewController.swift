@@ -110,15 +110,15 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
             primaryMenu.forceUpdatePosition(0)
         }
         
-        if sender.direction == .up {
-            searchController.searchBar.resignFirstResponder()
-            presenter?.changeMenu(index: 0)
-            primaryMenu.forceUpdatePosition(0)
-        } else if sender.direction == .down {
-            searchController.searchBar.resignFirstResponder()
-            presenter?.changeMenu(index: 0)
-            primaryMenu.forceUpdatePosition(0)
-        }
+//        if sender.direction == .up {
+//            searchController.searchBar.resignFirstResponder()
+//            presenter?.changeMenu(index: 0)
+//            primaryMenu.forceUpdatePosition(0)
+//        } else if sender.direction == .down {
+//            searchController.searchBar.resignFirstResponder()
+//            presenter?.changeMenu(index: 0)
+//            primaryMenu.forceUpdatePosition(0)
+//        }
     }
     
     @objc func refreshTable(_ sender: AnyObject) {
@@ -128,8 +128,9 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
             presenter?.refreshFavoriteMenu()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.tableView.contentInset = UIEdgeInsets(top: self.refreshControl.frame.height, left: 0, bottom: 0, right: 0)
             self.refreshControl.endRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top), animated: true)
+            self.tableView.contentInset = .zero
         }
     }
     

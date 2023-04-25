@@ -18,6 +18,8 @@
 		7C934C4A29D715100094CE4B /* NameRowStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C934C4929D715100094CE4B /* NameRowStock.swift */; };
 		7C934C4C29D716520094CE4B /* NameRowStock.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C934C4B29D716520094CE4B /* NameRowStock.xib */; };
 		7CA0EA5029DD4F4900996D9A /* SearchedHistoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA0EA4F29DD4F4900996D9A /* SearchedHistoryHeader.swift */; };
+		7CAC905F29F00F0A009CEF00 /* StockCandles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAC905E29F00F09009CEF00 /* StockCandles.swift */; };
+		7CAC906529F16607009CEF00 /* TimeFramesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAC906429F16607009CEF00 /* TimeFramesMenu.swift */; };
 		7CEA2F5A29D31D2D00653065 /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA2F5929D31D2D00653065 /* CollectionViewFlowLayout.swift */; };
 		A00E38E729855F86009175D8 /* StocksMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E38E629855F86009175D8 /* StocksMainPresenter.swift */; };
 		A00E38E929856058009175D8 /* MainScreenConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E38E829856058009175D8 /* MainScreenConfigurator.swift */; };
@@ -74,6 +76,8 @@
 		7C934C4929D715100094CE4B /* NameRowStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameRowStock.swift; sourceTree = "<group>"; };
 		7C934C4B29D716520094CE4B /* NameRowStock.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameRowStock.xib; sourceTree = "<group>"; };
 		7CA0EA4F29DD4F4900996D9A /* SearchedHistoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedHistoryHeader.swift; sourceTree = "<group>"; };
+		7CAC905E29F00F09009CEF00 /* StockCandles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCandles.swift; sourceTree = "<group>"; };
+		7CAC906429F16607009CEF00 /* TimeFramesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFramesMenu.swift; sourceTree = "<group>"; };
 		7CDA6DF129B7BE6900F768DF /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CEA2F5929D31D2D00653065 /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewFlowLayout.swift; path = "../New Group/CollectionViewFlowLayout.swift"; sourceTree = "<group>"; };
 		A00E38E629855F86009175D8 /* StocksMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksMainPresenter.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 		7C2C5BC029E41531005247CB /* subviews */ = {
 			isa = PBXGroup;
 			children = (
+				7CAC906429F16607009CEF00 /* TimeFramesMenu.swift */,
 			);
 			path = subviews;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				A010036A2987CFE900958890 /* Stock.swift */,
 				A010036C2987D05800958890 /* Company.swift */,
 				A010036E2987D07500958890 /* Quote.swift */,
+				7CAC905E29F00F09009CEF00 /* StockCandles.swift */,
 			);
 			path = Stock;
 			sourceTree = "<group>";
@@ -578,12 +584,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A010037229893EC200958890 /* CoreDataService.swift in Sources */,
+				7CAC906529F16607009CEF00 /* TimeFramesMenu.swift in Sources */,
 				A0B6620B29800B9700B01505 /* PropertyRowStockModel.swift in Sources */,
 				A06BC3E2297801820043B0CC /* StocksMainViewController.swift in Sources */,
 				A06BC3DE297801820043B0CC /* AppDelegate.swift in Sources */,
 				7C3C932C29E037BC0053C76B /* FilteredsTableViewHeader.swift in Sources */,
 				A06BC3FE297C32370043B0CC /* PropertyRowStock.swift in Sources */,
 				A01003692987C1FB00958890 /* StockService.swift in Sources */,
+				7CAC905F29F00F0A009CEF00 /* StockCandles.swift in Sources */,
 				7C934C4A29D715100094CE4B /* NameRowStock.swift in Sources */,
 				7C5E9FB029E2EE3700090C1C /* DetailedViewController.swift in Sources */,
 				7C5E9FB229E2F01600090C1C /* DetailedScreenConfigurator.swift in Sources */,
