@@ -16,7 +16,6 @@ class MainScreenConfigurator {
         let presenter = StocksMainPresenter()
         vc.presenter = presenter
         presenter.view = vc
-        
         return vc
     }
 }

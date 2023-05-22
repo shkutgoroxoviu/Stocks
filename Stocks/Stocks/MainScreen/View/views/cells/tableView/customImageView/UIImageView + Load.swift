@@ -8,6 +8,7 @@
 
 import UIKit
 import SVGKit
+import SDWebImage
 
 class ImageCache {
 

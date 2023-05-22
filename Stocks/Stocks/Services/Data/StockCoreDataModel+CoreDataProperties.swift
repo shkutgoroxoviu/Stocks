@@ -23,7 +23,6 @@ extension StockCoreDataModel {
     @NSManaged public var d: Double
     @NSManaged public var dp: Double
     @NSManaged public var isFavorite: Bool
-
 }
 
 extension StockCoreDataModel : Identifiable {
