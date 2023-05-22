@@ -10,6 +10,7 @@ PODS:
   - SDWebImage (5.15.5):
     - SDWebImage/Core (= 5.15.5)
   - SDWebImage/Core (5.15.5)
+  - SnapKit (5.0.1)
   - SVGKit (3.1.0):
     - CocoaLumberjack (~> 3.0)
   - SwiftAlgorithms (1.0.0)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - CocoaLumberjack
   - Kingfisher (~> 7.0)
   - SDWebImage (~> 5.0)
+  - SnapKit (~> 5.0.0)
   - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
 
 SPEC REPOS:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - CocoaLumberjack
     - Kingfisher
     - SDWebImage
+    - SnapKit
     - SwiftAlgorithms
 
 EXTERNAL SOURCES:
@@ -44,9 +47,10 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 0d82ee6ec5ed63834e2c366c4a3ac495410c25f6
+PODFILE CHECKSUM: c6c99e44189499b0ed93aa0269e6b94633247085
 
 COCOAPODS: 1.12.0

@@ -13,7 +13,7 @@ protocol SearchViewProtocol: AnyObject {
     func openDetailedVC(vc: UIViewController)
 }
 
-class SearchViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate, SearchViewProtocol {
+final class SearchViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate, SearchViewProtocol {
     var presenter: SearchPresenterProtocol?
     
     var width = 50
@@ -47,7 +47,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate, UISear
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    func configUI() {
+    private func configUI() {
         let headerFooterView = UIView()
         let nibCollectionView = UINib(nibName: NameRowStock.reuseID, bundle: nil)
         collectionView.collectionViewLayout = MyCollectionViewFlowLayout()
@@ -91,7 +91,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate, UISear
         bottomTableViewConstraint.constant = view.frame.height - 381
     }
 
-    func createGestureRecognizer() {
+    private func createGestureRecognizer() {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         swipeRight.direction = .right
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -101,15 +101,15 @@ class SearchViewController: UIViewController, UISearchControllerDelegate, UISear
         view.addGestureRecognizer(swipeRight)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         self.navigationController?.view.endEditing(true)
     }
     
-    @objc func swipeRight(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc private func swipeRight(gestureRecognizer: UIPanGestureRecognizer) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func tapOnTicker() {
+    private func tapOnTicker() {
         tableView.isHidden = false
         collectionView.isHidden = true
         clearButtonLabel.isHidden = true
@@ -182,7 +182,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate, UISear
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func clearButton(_ sender: Any) {
+    @IBAction private func clearButton(_ sender: Any) {
         presenter?.clearSearchHistory()
     }
     
@@ -314,7 +314,7 @@ extension SearchViewController {
 
 extension SearchViewController: TapShowButton {
     func didTap(bool: Bool) {
-        if bool == true {
+        if bool {
             UIView.animate(withDuration: 0.3) {
                 self.bottomTableViewConstraint.constant = 0
                 self.view.layoutIfNeeded()

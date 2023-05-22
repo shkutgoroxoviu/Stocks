@@ -8,8 +8,6 @@
 import Foundation
 
 protocol StocksMainPresenterProtocol {
-//    var filteredRows: [PropertyRowStockModel] { get set }
-    
     var rowModels: [PropertyRowStockModel] { get set }
     
     var favoriteModels: [PropertyRowStockModel] { get set }
@@ -43,15 +41,14 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         return UserDefaults.tickers
     }
     
-    var filteredRows: [PropertyRowStockModel] = []
     var rowModels: [PropertyRowStockModel] = []
     var favoriteModels: [PropertyRowStockModel] = []
     var currentList: [PropertyRowStockModel] = []
     
-    var currentIndex: Int = 0
-    var text: String?
+    private var currentIndex: Int = 0
+    private var text: String?
     
-    var dispatchGroup = DispatchGroup()
+    private var dispatchGroup = DispatchGroup()
     
     func openSearchVC() {
         let vc = SearchScreenConfigurator.config()
@@ -75,22 +72,33 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
     }
     
     func refreshFavoriteMenu() {
+        dispatchGroup.enter()
         loadAllTickers()
-        favoriteModels = []
-        didTapFavoriteMenuItem()
-    }
-    
-    func loadAllTickers() {
-        for ticker in tickers {
-            networkService.fetchStock(for: ticker) { [weak self] stock  in
-                guard let self = self else { return }
-                self.coreDataService.update(with: stock)
-            }
+        dispatchGroup.leave()
+        dispatchGroup.notify(queue: .main) {
+            self.favoriteModels = []
+            self.didTapFavoriteMenuItem()
         }
-        update()
     }
     
-    func update() {
+    private func loadAllTickers() {
+        for ticker in tickers {
+            dispatchGroup.enter()
+            networkService.fetchCompany(for: ticker) { [weak self] company  in
+                guard let self = self else { return }
+                self.networkService.fetchQuote(for: ticker) { [weak self] quote in
+                    self?.coreDataService.update(with: Stock(companyProfile: company, quote: quote))
+                }
+            }
+            self.dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .global()) {
+            self.update()
+        }
+    }
+    
+    private func update() {
         guard let dataModels = self.coreDataService.fetchStock() else { return }
         rowModels = dataModels.compactMap({ model in
             return PropertyRowStockModel(
@@ -107,7 +115,7 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         view?.reloadData()
     }
     
-    func addStock(at stock: Stock) {
+    private func addStock(at stock: Stock) {
         coreDataService.addStock(stock: stock)
         UserDefaults.tickers.append(stock.companyProfile.ticker)
         update()
@@ -130,7 +138,7 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         view?.reloadData()
     }
     
-    func detectingCurrentIndex(index: Int) {
+    private func detectingCurrentIndex(index: Int) {
         if index == 0 {
             self.update()
         } else {
@@ -149,7 +157,6 @@ class StocksMainPresenter: StocksMainPresenterProtocol {
         case 0:
             loadAllTickers()
             favoriteModels = []
-            update()
             currentIndex = index
         case 1:
             loadAllTickers()

@@ -24,7 +24,7 @@ open class TimeFramesMenu: UIStackView {
         
         axis = .horizontal
         alignment = .fill
-        spacing = 10
+        spacing = 15
         distribution = .fillEqually
     }
     

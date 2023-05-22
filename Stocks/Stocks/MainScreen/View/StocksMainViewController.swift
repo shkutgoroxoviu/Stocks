@@ -13,15 +13,14 @@ protocol StocksMainViewProtocol: AnyObject {
     func openDetailedVC(vc: UIViewController)
 }
 
-class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISearchControllerDelegate, UISearchBarDelegate {
+final class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISearchControllerDelegate, UISearchBarDelegate {
     var presenter: StocksMainPresenterProtocol?
     
     private let primaryMenu = PrimaryMenu()
     @IBOutlet weak var tableView: UITableView!
     private let searchController = UISearchController(searchResultsController: nil)
     private var refreshControl = UIRefreshControl()
-    
-    var cornerRadiusDict: [IndexPath: CGFloat] = [:]
+
     var currentIndex: Int = 0
     
     override func viewDidLoad() {
@@ -38,7 +37,7 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         detectedCurrentIndex()
     }
     
-    func detectedCurrentIndex() {
+    private func detectedCurrentIndex() {
         if currentIndex == 0 {
             presenter?.didLoad()
         } else {
@@ -47,7 +46,7 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         }
     }
 
-    func configUI() {
+    private func configUI() {
         let nib = UINib(nibName: PropertyRowStock.reuseID, bundle: nil)
         let headerFooterView = UIView()
         tableView.register(nib, forCellReuseIdentifier: PropertyRowStock.reuseID)
@@ -81,7 +80,7 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         view.addSubview(primaryMenu)
     }
 
-    func createGestureRecognizer() {
+    private func createGestureRecognizer() {
         let swipeleft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeleft.direction = .left
         self.view.addGestureRecognizer(swipeleft)
@@ -99,7 +98,7 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         self.view.addGestureRecognizer(swipeDown)
     }
     
-    @objc func handleSwipe(_ sender: UISwipeGestureRecognizer) {
+    @objc private func handleSwipe(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left {
             presenter?.changeMenu(index: 1)
             currentIndex = 1
@@ -109,19 +108,9 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
             currentIndex = 0
             primaryMenu.forceUpdatePosition(0)
         }
-        
-//        if sender.direction == .up {
-//            searchController.searchBar.resignFirstResponder()
-//            presenter?.changeMenu(index: 0)
-//            primaryMenu.forceUpdatePosition(0)
-//        } else if sender.direction == .down {
-//            searchController.searchBar.resignFirstResponder()
-//            presenter?.changeMenu(index: 0)
-//            primaryMenu.forceUpdatePosition(0)
-//        }
     }
     
-    @objc func refreshTable(_ sender: AnyObject) {
+    @objc private func refreshTable(_ sender: AnyObject) {
         if currentIndex == 0 {
             presenter?.didLoad()
         } else {
@@ -134,7 +123,7 @@ class StocksMainViewController: UIViewController, StocksMainViewProtocol, UISear
         }
     }
     
-    func setPrimaryMenuConstraints() {
+    private func setPrimaryMenuConstraints() {
         primaryMenu.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         primaryMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         primaryMenu.heightAnchor.constraint(equalToConstant: 25).isActive = true
@@ -224,22 +213,6 @@ extension StocksMainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return sectionSpacing
     }
-    
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        if currentIndex != 0 {
-//            return .none
-//        }
-//        return .delete
-//    }
-//    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete && currentIndex == 0 {
-//            guard let model = presenter?.rowModels[indexPath.section] else { return }
-//            presenter?.deleteStock(at: model.tickerName)
-//            let indexSet = IndexSet(arrayLiteral: indexPath.section)
-//            tableView.deleteSections(indexSet, with: .fade)
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {

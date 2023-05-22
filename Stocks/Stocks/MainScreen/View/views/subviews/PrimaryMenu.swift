@@ -94,7 +94,7 @@ open class PrimaryMenu: UIStackView {
         })
     }
     
-    @objc func clickMenuTitle(_ sender: UIButton) {
+    @objc private func clickMenuTitle(_ sender: UIButton) {
         guard !isBlocked else { return }
         currentPosition = sender.tag
         updateButtons()

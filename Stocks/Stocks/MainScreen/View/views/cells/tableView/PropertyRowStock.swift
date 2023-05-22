@@ -31,7 +31,7 @@ class PropertyRowStock: UITableViewCell {
         configUI()
     }
     
-    func configUI() {
+    private func configUI() {
         stockImage.layer.cornerRadius = 12
         deltaPrice.textAlignment = .right
         currentPrice.textAlignment = .right
@@ -75,7 +75,7 @@ class PropertyRowStock: UITableViewCell {
         bool ? favoriteButton.setImage(UIImage(named: "selected"), for: .normal) : favoriteButton.setImage(UIImage(named: "Star 1"), for: .normal)
     }
     
-    @IBAction func favoriteButtonAction(_ sender: UIButton) {
+    @IBAction private func favoriteButtonAction(_ sender: UIButton) {
         if favoriteButton.imageView?.image == UIImage(named: "selected")  {
             buttonSelected(bool: false)
             favoriteButton.isSelected = !favoriteButton.isSelected
