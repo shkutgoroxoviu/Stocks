@@ -12,6 +12,9 @@
 		7C5E9FB029E2EE3700090C1C /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5E9FAF29E2EE3700090C1C /* DetailedViewController.swift */; };
 		7C5E9FB229E2F01600090C1C /* DetailedScreenConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5E9FB129E2F01600090C1C /* DetailedScreenConfigurator.swift */; };
 		7C5E9FB429E2F10000090C1C /* DetailedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5E9FB329E2F10000090C1C /* DetailedPresenter.swift */; };
+		7C6BC8D42A08F8E2000C0CAA /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6BC8D32A08F8E2000C0CAA /* SummaryTableViewCell.swift */; };
+		7C6BC8D62A0907D3000C0CAA /* SummaryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6BC8D52A0907D3000C0CAA /* SummaryCellModel.swift */; };
+		7C6BC8D92A091626000C0CAA /* PropertiesRowCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6BC8D82A091626000C0CAA /* PropertiesRowCellModel.swift */; };
 		7C6FB3CD29D5C83800449122 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FB3CC29D5C83800449122 /* SearchViewController.swift */; };
 		7C78D68D29DC57CC00A6A59B /* SearchScreenConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C78D68C29DC57CC00A6A59B /* SearchScreenConfigurator.swift */; };
 		7C934C4529D7098B0094CE4B /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C934C4429D7098B0094CE4B /* SearchPresenter.swift */; };
@@ -70,6 +73,9 @@
 		7C5E9FAF29E2EE3700090C1C /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		7C5E9FB129E2F01600090C1C /* DetailedScreenConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedScreenConfigurator.swift; sourceTree = "<group>"; };
 		7C5E9FB329E2F10000090C1C /* DetailedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPresenter.swift; sourceTree = "<group>"; };
+		7C6BC8D32A08F8E2000C0CAA /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
+		7C6BC8D52A0907D3000C0CAA /* SummaryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCellModel.swift; sourceTree = "<group>"; };
+		7C6BC8D82A091626000C0CAA /* PropertiesRowCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesRowCellModel.swift; sourceTree = "<group>"; };
 		7C6FB3CC29D5C83800449122 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7C78D68C29DC57CC00A6A59B /* SearchScreenConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenConfigurator.swift; sourceTree = "<group>"; };
 		7C934C4429D7098B0094CE4B /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				7C5E9FAF29E2EE3700090C1C /* DetailedViewController.swift */,
+				7C6BC8D72A090BAB000C0CAA /* cells */,
 				7C2C5BC029E41531005247CB /* subviews */,
 			);
 			path = View;
@@ -183,8 +190,18 @@
 		7C5E9FAC29E2EDCB00090C1C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C6BC8D52A0907D3000C0CAA /* SummaryCellModel.swift */,
+				7C6BC8D82A091626000C0CAA /* PropertiesRowCellModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7C6BC8D72A090BAB000C0CAA /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				7C6BC8D32A08F8E2000C0CAA /* SummaryTableViewCell.swift */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		7C6FB3CB29D5C80600449122 /* View */ = {
@@ -292,6 +309,7 @@
 		A00E38EC29856B20009175D8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A01003682987C1FB00958890 /* StockService.swift */,
 				A01003662987C1C900958890 /* Stock */,
 			);
 			path = Network;
@@ -300,7 +318,6 @@
 		A01003662987C1C900958890 /* Stock */ = {
 			isa = PBXGroup;
 			children = (
-				A01003682987C1FB00958890 /* StockService.swift */,
 				A010036A2987CFE900958890 /* Stock.swift */,
 				A010036C2987D05800958890 /* Company.swift */,
 				A010036E2987D07500958890 /* Quote.swift */,
@@ -399,8 +416,8 @@
 			isa = PBXGroup;
 			children = (
 				A06BC3FC297C32370043B0CC /* PropertyRowStock.swift */,
-				A06BC3FD297C32370043B0CC /* PropertyRowStock.xib */,
 				A0B6620A29800B9700B01505 /* PropertyRowStockModel.swift */,
+				A06BC3FD297C32370043B0CC /* PropertyRowStock.xib */,
 				A02BAE00299A2ECE003A3D95 /* customImageView */,
 			);
 			path = tableView;
@@ -589,8 +606,10 @@
 				A06BC3E2297801820043B0CC /* StocksMainViewController.swift in Sources */,
 				A06BC3DE297801820043B0CC /* AppDelegate.swift in Sources */,
 				7C3C932C29E037BC0053C76B /* FilteredsTableViewHeader.swift in Sources */,
+				7C6BC8D62A0907D3000C0CAA /* SummaryCellModel.swift in Sources */,
 				A06BC3FE297C32370043B0CC /* PropertyRowStock.swift in Sources */,
 				A01003692987C1FB00958890 /* StockService.swift in Sources */,
+				7C6BC8D92A091626000C0CAA /* PropertiesRowCellModel.swift in Sources */,
 				7CAC905F29F00F0A009CEF00 /* StockCandles.swift in Sources */,
 				7C934C4A29D715100094CE4B /* NameRowStock.swift in Sources */,
 				7C5E9FB029E2EE3700090C1C /* DetailedViewController.swift in Sources */,
@@ -600,6 +619,7 @@
 				A00E38E729855F86009175D8 /* StocksMainPresenter.swift in Sources */,
 				A0100387298948C500958890 /* StockCoreDataModel+CoreDataProperties.swift in Sources */,
 				7C5E9FB429E2F10000090C1C /* DetailedPresenter.swift in Sources */,
+				7C6BC8D42A08F8E2000C0CAA /* SummaryTableViewCell.swift in Sources */,
 				7C6FB3CD29D5C83800449122 /* SearchViewController.swift in Sources */,
 				A010036D2987D05800958890 /* Company.swift in Sources */,
 				A0100386298948C500958890 /* StockCoreDataModel+CoreDataClass.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Charts
+import SnapKit
 
 
 protocol DetailedViewProtocol: AnyObject {
@@ -22,6 +23,8 @@ protocol DetailedViewProtocol: AnyObject {
     func deleteThePreviousWindow()
     
     func reloadData()
+    
+    func detectedCurrentIndex(index: Int)
 }
 
 class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewDelegate {
@@ -38,10 +41,12 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
     private var footerView = UIView()
     private var timeFramesMenu = TimeFramesMenu()
     private let buyButton = UIButton()
-    let spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+    private let spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+    private let tableView = UITableView()
     
-    var bool = true
-    var currentIndex = 4
+    private var bool = true
+    private var currentIndexForTimeFrames = 2
+    private var currentIndexForPrimaryMenu: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +58,7 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         createGestureRecognizer()
         presenter?.viewDidLoad()
         configFooter()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        configChart()
+        setTableViewConstraints()
     }
     
     func config(model: StockCoreDataModel) {
@@ -70,6 +71,14 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
     }
     
     private func configUI() {
+        tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.reuseID)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.isHidden = true
+        tableView.layoutIfNeeded()
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        
         var configuration = UIButton.Configuration.filled()
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 0)
         favoriteButton.addTarget(self, action: #selector(tapFavoriteButton), for: .touchUpInside)
@@ -95,11 +104,16 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         primaryMenu.configure(with: ["Chart", "Summary", "News", "Forecast"])
         primaryMenu.addBottomShadow()
         
+        primaryMenu.axis = .horizontal
+        primaryMenu.alignment = .fill
+        primaryMenu.spacing = 0
+        primaryMenu.distribution = .fillProportionally
+        
         chartView.delegate = self
         chartView.isUserInteractionEnabled = true
         
         timeFramesMenu.delegate = self
-        timeFramesMenu.forceUpdatePosition(currentIndex)
+        timeFramesMenu.forceUpdatePosition(currentIndexForTimeFrames)
         
         navigationItem.titleView?.backgroundColor = .white
         navigationController?.navigationBar.backgroundColor = .white
@@ -110,10 +124,11 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         view.addSubview(deltaPrice)
         view.addSubview(primaryMenu)
         view.addSubview(chartView)
+        view.addSubview(tableView)
     }
     
-    func configFooter() {
-        timeFramesMenu.configure(with: ["5", "15", "30", "60", "D", "W", "M"])
+    private func configFooter() {
+        timeFramesMenu.configure(with: ["30", "60", "D", "W", "M"])
 
         buyButton.frame = CGRect(x: 0, y: 0, width: view.frame.width - 50, height: 60)
         buyButton.center = CGPoint(x: view.frame.width / 2, y: 220)
@@ -158,8 +173,6 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         chartView.leftAxis.axisMinimum = 0
         chartView.leftAxis.labelCount = 10
         chartView.leftAxis.granularity = 100
-        
-        
 
         chartView.rightAxis.removeAllLimitLines()
         chartView.rightAxis.drawZeroLineEnabled = false
@@ -195,8 +208,14 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
     }
     
     func reloadData() {
-        DispatchQueue.main.async {
-            self.chartView.notifyDataSetChanged()
+        if currentIndexForPrimaryMenu == 0 {
+            DispatchQueue.main.async {
+                self.chartView.notifyDataSetChanged()
+            }
+        } else if currentIndexForPrimaryMenu == 1 {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -228,19 +247,26 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         }
     }
     
-    func setTimeFrameMenuConstraints() {
-        timeFramesMenu.frame = CGRect(x: 0, y: 0, width: view.frame.width - 10, height: 50)
+    private func setTimeFrameMenuConstraints() {
+        timeFramesMenu.frame = CGRect(x: 0, y: 0, width: view.frame.width - 30, height: 50)
         timeFramesMenu.center = CGPoint(x: view.frame.width / 2, y: 70)
     }
     
-    func setPrimaryMenuConstraints() {
+    private func setTableViewConstraints() {
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(200)
+            make.trailing.bottom.leading.equalToSuperview()
+        }
+    }
+    
+    private func setPrimaryMenuConstraints() {
         primaryMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         primaryMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         primaryMenu.heightAnchor.constraint(equalToConstant: 55).isActive = true
         primaryMenu.bottomAnchor.constraint(equalTo: stockPrice.topAnchor, constant: -45).isActive = true
     }
 
-    func createGestureRecognizer() {
+    private func createGestureRecognizer() {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         swipeRight.direction = .right
         
@@ -252,15 +278,15 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         view.addGestureRecognizer(swipeRight)
     }
     
-    @objc func cancelHighlight(gestureRecognizer: UITapGestureRecognizer) {
+    @objc private func cancelHighlight(gestureRecognizer: UITapGestureRecognizer) {
         deleteThePreviousWindow()
     }
     
-    @objc func swipeRight(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc private func swipeRight(gestureRecognizer: UIPanGestureRecognizer) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func clickBuyButton() {
+    @objc private func clickBuyButton() {
         guard let presenter = presenter else { return }
         let alert = UIAlertController(title: "\(presenter.model.ticker)", message: "Do you really want to buy \(presenter.model.ticker)?", preferredStyle: .alert)
         alert.modalPresentationStyle = .fullScreen
@@ -287,7 +313,7 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         circle.layer.shadowRadius = 5
         circle.layer.shadowOpacity = 0.5
         
-        let popUpView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 70))
+        let popUpView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 75))
         popUpView.backgroundColor = .black
         popUpView.layer.cornerRadius = 20
         popUpView.layer.shadowColor = UIColor.gray.cgColor
@@ -303,9 +329,10 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         quoteLabel.textColor = .white
         quoteLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         
-        let dateLabel = UILabel(frame: CGRect(x: 0, y: 35, width: 100, height: 20))
+        let dateLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 100, height: 40))
         dateLabel.text = "\(convertationDate(enterDate:Int(presenter.candlesData[Int(entry.x)])))"
         dateLabel.textAlignment = .center
+        dateLabel.numberOfLines = 2
         dateLabel.textColor = UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.00)
         dateLabel.font = UIFont(name: "Montserrat-SemiBold", size: 12)
         
@@ -318,9 +345,9 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         self.chartView.highlightPerTapEnabled = true
     }
     
-    func convertationDate(enterDate: Int) -> String {
+    private func convertationDate(enterDate: Int) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let date = Date(timeIntervalSince1970: TimeInterval(enterDate))
         let formattedDate = dateFormatter.string(from: date)
     
@@ -368,7 +395,7 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         return view
     }
     
-    func buttonSelected(bool: Bool) {
+    private func buttonSelected(bool: Bool) {
         if bool == true {
             favoriteButton.setImage(UIImage(named: "selected"), for: .normal)
             navigationItem.rightBarButtonItem?.customView?.tintColor = UIColor(red: 1.00, green: 0.79, blue: 0.11, alpha: 1.00)
@@ -378,11 +405,29 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
         }
     }
     
-    @objc func tapBackButton() {
+    func detectedCurrentIndex(index: Int) {
+        if currentIndexForPrimaryMenu == 0 {
+            tableView.isHidden = true
+            timeFramesMenu.isHidden = false
+            footerView.isHidden = false
+            buyButton.isHidden = false
+            chartView.isHidden = false
+            
+        } else if currentIndexForPrimaryMenu == 1 {
+            tableView.isHidden = false
+            timeFramesMenu.isHidden = true
+            footerView.isHidden = true
+            buyButton.isHidden = true
+            chartView.isHidden = true
+            spinner.isHidden = true
+        }
+    }
+    
+    @objc private func tapBackButton() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func tapFavoriteButton() {
+    @objc private func tapFavoriteButton() {
         if favoriteButton.imageView?.image == UIImage(named: "selected")  {
             navigationItem.rightBarButtonItem?.customView?.tintColor = UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.00)
             buttonSelected(bool: false)
@@ -399,11 +444,19 @@ class DetailedViewController: UIViewController, DetailedViewProtocol, ChartViewD
             presenter?.changeIsFavorite(bool: true, ticker: ticker)
         }
     }
+    
+    private func modifiedStr(string: String) -> String {
+        let str = String(round(Double(string) ?? 0))
+        let modifiedStr = str.replacingOccurrences(of: ".", with: "")
+        return modifiedStr + "00000"
+    }
 }
 
 extension DetailedViewController: MenuStackDelegate {
     func changeMenu(index: Int) {
-        print("GAGA")
+        currentIndexForPrimaryMenu = index
+        detectedCurrentIndex(index: index)
+        presenter?.changePrimaryMenu(index: index)
     }
 }
 
@@ -433,7 +486,47 @@ extension DetailedViewController {
 
 extension DetailedViewController: TimeFrameDelegate {
     func changeFrame(index: Int) {
-        currentIndex = index
-        presenter?.changeMenu(index: currentIndex)
+        currentIndexForTimeFrames = index
+        presenter?.changeTimeFramesMenu(index: index)
     }
 }
+
+extension DetailedViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.reuseID, for: indexPath) as! SummaryTableViewCell
+        guard let presenter = presenter else { return cell }
+        
+        switch indexPath.row {
+        case 0:
+            cell.config(description: "Country", value: presenter.model.country)
+        case 1:
+            cell.config(description: "Currency", value: presenter.model.currency)
+        case 2:
+            cell.config(description: "Exchange", value: presenter.model.exchange)
+        case 3:
+            cell.config(description: "Type of services", value: presenter.model.typeOfServices)
+        case 4:
+            cell.config(description: "Ipo", value: presenter.model.ipo)
+        case 5:
+            cell.config(description: "Market capitalization", value: "$\(modifiedStr(string: String(presenter.model.marketCapitalization)))")
+        case 6:
+            cell.config(description: "Phone", value: "+\(presenter.model.phone)")
+        case 7:
+            cell.config(description: "Share outstanding", value: "\(modifiedStr(string: String(presenter.model.shareOutstanding)))")
+        case 8:
+            cell.config(description: "Web url", value: presenter.model.weburl)
+        default:
+            return cell
+        }
+        return cell 
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+}
+

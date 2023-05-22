@@ -8,14 +8,6 @@ import Charts
 import Foundation
 
 protocol DetailedPresenterProtocol {
-    func viewDidLoad()
-    
-    func changeIsFavorite(bool: Bool, ticker: String)
-    
-    func changeMenu(index: Int)
-    
-    func loadDataForChart(ticker: String, timeframe: Any)
-    
     var model: StockCoreDataModel { get set }
     
     var candlesClosePrice: [Double] { get set }
@@ -23,9 +15,19 @@ protocol DetailedPresenterProtocol {
     var candlesData: [Double] { get set }
     
     var dataEntries: [ChartDataEntry] { get set }
+    
+    func viewDidLoad()
+    
+    func changeIsFavorite(bool: Bool, ticker: String)
+    
+    func changeTimeFramesMenu(index: Int)
+    
+    func loadDataForChart(ticker: String, timeframe: Any)
+    
+    func changePrimaryMenu(index: Int)
 }
 
-class DetailedPresenter: DetailedPresenterProtocol {
+final class DetailedPresenter: DetailedPresenterProtocol {
     weak var view: DetailedViewProtocol?
     
     private var coreDataService = CoreDataService()
@@ -36,7 +38,7 @@ class DetailedPresenter: DetailedPresenterProtocol {
     var model: StockCoreDataModel
     var dataEntries: [ChartDataEntry] = []
     
-    var timeFrame: String = "D"
+    private var timeFrame: String = "D"
     
     init(model: StockCoreDataModel) {
         self.model = model
@@ -65,51 +67,37 @@ class DetailedPresenter: DetailedPresenterProtocol {
         coreDataService.changeToFavorite(tickerString: ticker, isFavorite: bool)
     }
     
-    func changeMenu(index: Int) {
+    func changeTimeFramesMenu(index: Int) {
         switch index {
         case 0:
-            timeFrame = "5"
-            dataEntries = []
-            view?.startSpinner()
-            view?.deleteThePreviousWindow()
-            loadDataForChart(ticker: model.ticker, timeframe: timeFrame)
-            view?.reloadData()
-        case 1:
-            timeFrame = "15"
-            dataEntries = []
-            view?.startSpinner()
-            view?.deleteThePreviousWindow()
-            loadDataForChart(ticker: model.ticker, timeframe: timeFrame)
-            view?.reloadData()
-        case 2:
             timeFrame = "30"
             dataEntries = []
             view?.startSpinner()
             view?.deleteThePreviousWindow()
             loadDataForChart(ticker: model.ticker, timeframe: timeFrame)
             view?.reloadData()
-        case 3:
+        case 1:
             timeFrame = "60"
             dataEntries = []
             view?.startSpinner()
             view?.deleteThePreviousWindow()
             loadDataForChart(ticker: model.ticker, timeframe: timeFrame)
             view?.reloadData()
-        case 4:
+        case 2:
             timeFrame = "D"
             dataEntries = []
             view?.startSpinner()
             view?.deleteThePreviousWindow()
             loadDataForChart(ticker: model.ticker, timeframe: timeFrame)
             view?.reloadData()
-        case 5:
+        case 3:
             timeFrame = "W"
             dataEntries = []
             view?.startSpinner()
             view?.deleteThePreviousWindow()
             loadDataForChart(ticker: model.ticker, timeframe: timeFrame)
             view?.reloadData()
-        case 6:
+        case 4:
             timeFrame = "M"
             dataEntries = []
             view?.startSpinner()
@@ -120,5 +108,15 @@ class DetailedPresenter: DetailedPresenterProtocol {
             return
         }
     }
-
+    
+    func changePrimaryMenu(index: Int) {
+        switch index {
+        case 0:
+            view?.reloadData()
+        case 1:
+            view?.reloadData()
+        default:
+            return
+        }
+    }
 }

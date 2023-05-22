@@ -48,6 +48,15 @@ class CoreDataService {
             models[0].c = stock.quote.c
             models[0].d = stock.quote.d
             models[0].dp = stock.quote.dp
+            models[0].country = stock.companyProfile.country
+            models[0].currency = stock.companyProfile.currency
+            models[0].exchange = stock.companyProfile.exchange
+            models[0].ipo = stock.companyProfile.ipo
+            models[0].marketCapitalization = stock.companyProfile.marketCapitalization
+            models[0].phone = stock.companyProfile.phone
+            models[0].typeOfServices = stock.companyProfile.finnhubIndustry
+            models[0].weburl = stock.companyProfile.weburl
+            models[0].shareOutstanding = stock.companyProfile.shareOutstanding
         
             try context.save()
             print("\(stock.companyProfile.ticker) update ✅✅✅")
@@ -78,6 +87,14 @@ class CoreDataService {
         taskObject.c = stock.quote.c
         taskObject.d = stock.quote.d
         taskObject.dp = stock.quote.dp
+        taskObject.country = stock.companyProfile.country
+        taskObject.currency = stock.companyProfile.currency
+        taskObject.exchange = stock.companyProfile.exchange
+        taskObject.ipo = stock.companyProfile.ipo
+        taskObject.marketCapitalization = stock.companyProfile.marketCapitalization
+        taskObject.phone = stock.companyProfile.phone
+        taskObject.typeOfServices = stock.companyProfile.finnhubIndustry
+        taskObject.weburl = stock.companyProfile.weburl
         
         do {
             try context.save()
@@ -112,7 +129,9 @@ class CoreDataService {
             let result = try context.fetch(fetchRequest)
             guard let tickerModel = result.first else { return}
             tickerModel.isFavorite = isFavorite
-
+            if tickerModel.isFavorite == false {
+                deleteStock(tickerModel.ticker)
+            }
             try context.save()
             print(isFavorite ? "\(tickerString) save ✅✅✅" : "\(tickerString) delete ❌❌❌")
         } catch {

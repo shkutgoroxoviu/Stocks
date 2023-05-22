@@ -14,12 +14,6 @@ protocol SearchPresenterProtocol {
     
     func didLoad()
     
-    var filteredRows: [PropertyRowStockModel] { get set }
-    
-    var rowModels: [PropertyRowStockModel] { get set }
-    
-    var searchHistory: [String] { get set }
-    
     func loadSearchTickers()
     
     func clearSearchHistory()
@@ -27,6 +21,12 @@ protocol SearchPresenterProtocol {
     func openDetailedVC(for index: Int)
     
     func detectRepeated(text: String)
+    
+    var filteredRows: [PropertyRowStockModel] { get set }
+    
+    var rowModels: [PropertyRowStockModel] { get set }
+    
+    var searchHistory: [String] { get set }
 }
 
 
@@ -36,10 +36,10 @@ class SearchPresenter: SearchPresenterProtocol {
     private var networkService = StockService()
     private var coreDataService = CoreDataService()
     
-    var searchedTickers: [String] {
+    private var searchedTickers: [String] {
         return UserDefaults.searchedTickers
     }
-    var tickers: [String] {
+    private var tickers: [String] {
         return UserDefaults.tickers
     }
     
@@ -47,8 +47,10 @@ class SearchPresenter: SearchPresenterProtocol {
     var rowModels: [PropertyRowStockModel] = []
     var searchHistory: [String] = []
     
-    var text: String?
+    private var dispatchGroup = DispatchGroup()
     
+    private var text: String?
+   
     func didLoad() {
         loadAllTickers()
         loadSearchTickers()
@@ -57,24 +59,24 @@ class SearchPresenter: SearchPresenterProtocol {
     func filterContentForSearchText(_ searchText: String) {
         self.text = searchText
         didTapOnSearch()
-            self.networkService.fetchStock(for: searchText.lowercased()) { [weak self]  stock in
-                let model = PropertyRowStockModel(
-                    tickerName: stock.companyProfile.ticker,
-                    name: stock.companyProfile.name,
-                    image: stock.companyProfile.logo,
-                    deltaPrice: stock.quote.d,
-                    currentPrice: stock.quote.c,
-                    deltaProcent: stock.quote.dp,
-                    isFavorite: false
-                )
-                guard let self = self else { return }
-                self.deleteRepeated(text: searchText, stock: stock, model: model)
-                self.view?.reloadData()
-            }
+        self.networkService.fetchStock(for: searchText.lowercased()) { [weak self]  stock in
+            let model = PropertyRowStockModel(
+                tickerName: stock.companyProfile.ticker,
+                name: stock.companyProfile.name,
+                image: stock.companyProfile.logo,
+                deltaPrice: stock.quote.d,
+                currentPrice: stock.quote.c,
+                deltaProcent: stock.quote.dp,
+                isFavorite: false
+            )
+            guard let self = self else { return }
+            self.deleteRepeated(text: searchText, stock: stock, model: model)
+            self.view?.reloadData()
+        }
         self.view?.reloadData()
     }
     
-    func loadAllTickers() {
+    private func loadAllTickers() {
         for ticker in tickers {
             networkService.fetchStock(for: ticker) { [weak self] stock  in
                 guard let self = self else { return }
@@ -90,7 +92,7 @@ class SearchPresenter: SearchPresenterProtocol {
         }
     }
     
-    func update() {
+    private func update() {
         guard let dataModels = self.coreDataService.fetchStock() else { return }
         rowModels = dataModels.compactMap({ model in
             return PropertyRowStockModel(
@@ -106,7 +108,7 @@ class SearchPresenter: SearchPresenterProtocol {
         view?.reloadData()
     }
     
-    func addTickerInHistory(bool: Bool, text: String) {
+    private func addTickerInHistory(bool: Bool, text: String) {
         if bool == false && searchHistory.contains(text) {
             return
         } else if bool == true && !searchHistory.contains(text)  {
@@ -137,7 +139,7 @@ class SearchPresenter: SearchPresenterProtocol {
         view?.openDetailedVC(vc: vc)
     }
     
-    func deleteRepeated(text: String, stock: Stock, model: PropertyRowStockModel) {
+    private func deleteRepeated(text: String, stock: Stock, model: PropertyRowStockModel) {
         if self.rowModels.contains(where: { $0.tickerName.lowercased() == text.lowercased() }) {
             return
         } else {
@@ -146,7 +148,7 @@ class SearchPresenter: SearchPresenterProtocol {
         }
     }
     
-    func didTapOnSearch() {
+    private func didTapOnSearch() {
         update()
         filteredRows = rowModels.filter { model -> Bool in
             return model.tickerName.lowercased().contains(self.text?.lowercased() ?? "")
@@ -154,7 +156,7 @@ class SearchPresenter: SearchPresenterProtocol {
         view?.reloadData()
     }
     
-    func addStock(at stock: Stock) {
+    private func addStock(at stock: Stock) {
         coreDataService.addStock(stock: stock)
         UserDefaults.tickers.append(stock.companyProfile.ticker)
         update()

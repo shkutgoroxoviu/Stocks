@@ -26,16 +26,16 @@ class CustomImageView: UIImageView {
         image = nil
         
         addSpinner()
-
+        
         if let imageFromCache = ImageCache.shared.object(forKey: urlString as NSString) {
             image = imageFromCache
             stopSpinner()
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            if let data = try? Data(contentsOf: url) {
-                DispatchQueue.main.async {
+        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+            DispatchQueue.main.async {
+                if let data = data {
                     if let rI = SVGKImage(data: data) {
                         ImageCache.shared.setObject(rI.uiImage, forKey: urlString as NSString)
                         self.image = rI.uiImage
@@ -43,8 +43,10 @@ class CustomImageView: UIImageView {
                     }
                 }
             }
-        }.resume()
+        }
+        task.resume()
     }
+    
     
     func addSpinner() {
         addSubview(spinner)
